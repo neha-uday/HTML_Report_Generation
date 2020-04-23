@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Report Generation</title>
+    </head>
+    <style>
+        .logoathr{
+            text-align: center;
+        }
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        th{
+            padding: 15px;
+            text-align: center;
+            font-family: 'Times New Roman';
+            
+        }
+        td{
+            padding: 15px;
+            text-align: left;
+        }
+        
+    </style>
+    <body>
+        <h1>User Page</h1>
+        <div class="logoathr">
+        <img src="athrvlogo.jpeg" alt="Logo of Athrv-Ed" width="120" height="120" style="vertical-align:middle"><br>
+        </div>
+
+        <p>
+        <label><b>Issue Date:</b></label>
+        <label id="date"></label>
+        <script>
+            document.getElementById("date").innerHTML = Date();
+        </script>
+        </p>
+        
+        <label><b>Report Of :</b> </label>
+        <label for="Start_date">Start Date:</label>
+        <input type="date" id="Send_date" name="trip-start"
+        value= ${startingdate}
+        min="1990-01-01" max="2090-12-31">
+       
+
+       <label for="End_date">End Date:</label>
+       <input type="date" id="End_date" name="trip-start"
+       value= ${endingdate}
+       min="1990-01-01" max="2090-12-31">
+       <br><br><br><br><br><br>
+
+       <table width="1080",height="300", align ="center">
+           <tr class ="Headings">
+               <th>User ID</th>
+               <th>NAME</th>
+               <th>Days Worked</th>
+               <th>Days Present</th>
+               <th>Hours Worked</th>
+           </tr>
+
+           <tr class ="data">
+               <td>${uuid}</td>
+               <td>${name}</td>
+               <td>${working_days}</td>
+               <td>${present_days}</td>
+               <td>${hours_worked}</td>
+           </tr>
+             
+       </table>
+    </body>
+</html>
