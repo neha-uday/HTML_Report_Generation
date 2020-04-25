@@ -93,22 +93,17 @@
             <tr class="information">
                <td colspan="2">
                    <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
-                   ></label><br><br>
-                
-                            <label><b>Report Of :</b> </label>
-                            <label for="Start_date">Start Date:</label>
-                            <input type="date" id="Send_date" name="trip-start"
-                            value= ${startingdate}
-                            min="1990-01-01" max="2090-12-31">
-                           
-                    
-                           <label for="End_date">End Date:</label>
-                           <input type="date" id="End_date" name="trip-start"
-                           value= ${endingdate}
-                           min="1990-01-01" max="2090-12-31"><br><br>
+                   ></label>
+                   
+                   <label><b>REPORT OF:</b> </label>
+                   <label><b>Start Date:</b> {start_date}</label>
+                   <label><b>End Date:</b> {end_date}</label>
+          
                </td>
             </tr>
+           
             <table>
+               <caption><b>REPORT</b></caption>
                <tr class ="heading">
                 <th>User ID</th>
                 <th>Name</th>
@@ -127,7 +122,9 @@
             
          </table>
          <div id="dvTable"></div>
-         <br />
+         <br/><br>
+
+         <h2 class="justify-center">Hey ! The Number of Hours you need to work to reach TOP ${num} : ${hours_goal}</h2>
       </div>
    </body>
 </html>
