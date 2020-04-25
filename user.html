@@ -94,16 +94,16 @@
                <td colspan="2">
                    <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
                    ></label>
-                   
+                   <br><br>
                    <label><b>REPORT OF:</b> </label>
                    <label><b>Start Date:</b> {start_date}</label>
-                   <label><b>End Date:</b> {end_date}</label>
+                   <label><b>End Date:</b> {end_date}</label><br><br>
           
                </td>
             </tr>
            
             <table>
-               <caption><b>REPORT</b></caption>
+               <caption><b> YOUR REPORT</b></caption>
                <tr class ="heading">
                 <th>User ID</th>
                 <th>Name</th>
@@ -119,9 +119,31 @@
                 <td>${hours_worked}</td>
                </tr>
             </table>
+            <br><br>
+            <table>
+                <caption><b> REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></caption>
+                <tr class ="heading">
+                 <th> R&D </th>
+                 <th>LEARNING</th>
+                 <th>DISCUSSION</th>
+                 <th>IMPLEMENTATION</th>
+                 <th>TUTORIALS</th>
+                 <th>ERROR DEBUGGING</th>
+                 <th>PROJECT</th>
+                </tr>
+                <tr class = "item">
+                 <td>${r_d}</td>
+                 <td>${learn}</td>
+                 <td>${disc}</td>
+                 <td>${implement}</td>
+                 <td>${tutorial}</td>
+                 <td>${error_bug}</td>
+                 <td>${project}</td>
+                </tr>
+             </table>
+
             
          </table>
-         <div id="dvTable"></div>
          <br/><br>
 
          <h2 class="justify-center">Hey ! The Number of Hours you need to work to reach TOP ${num} : ${hours_goal}</h2>
