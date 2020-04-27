@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>PDF Template Of ALL MEMBERS</title>
+      <style>
+         .invoice-box {
+         max-width: 800px;
+         margin: auto;
+         padding: 30px;
+         border: 1px solid #eee;
+         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+         font-size: 16px;
+         line-height: 24px;
+         font-family: 'Helvetica Neue', 'Helvetica';
+         color: #555;
+         }
+         .margin-top {
+         margin-top: 50px;
+         }
+         .justify-center {
+         text-align: center;
+         }
+         .invoice-box table {
+         width: 100%;
+         line-height: inherit;
+         text-align: left;
+         }
+         .invoice-box table td {
+         padding: 5px;
+         vertical-align: top;
+         }
+         .invoice-box table tr td:nth-child(2) {
+         text-align: right;
+         }
+         .invoice-box table tr.top table td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.top table td.title {
+         font-size: 45px;
+         line-height: 45px;
+         color: #333;
+         text-align: center;
+         
+         }
+         .invoice-box table tr.information table td {
+         padding-bottom: 40px;
+         }
+         .invoice-box table tr.heading th {
+         background: #eee;
+         border-bottom: 1px solid #ddd;
+         font-weight: bold;
+         text-align: center;
+         }
+         .invoice-box table tr.details td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.item td {
+         border-bottom: 1px solid #eee;
+         text-align: center;
+
+         }
+      
+         @media only screen and (max-width: 600px) {
+         .invoice-box table tr.top table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         .invoice-box table tr.information table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         }
+         
+
+      </style>
+    
+   </head>
+   <body onload="combo()">
+      <div class="invoice-box">
+         <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                   <table>
+                      <tr>
+                         <td class="title"><img src="athrvlogo.jpeg" alt="Logo of Athrv-Ed" 
+                            style="width:100%; max-width:156px;align-items: center;"></td>
+                         <td>
+                         </td>
+                      </tr>
+                   </table>
+                </td>
+             </tr>
+             <tr class="information">
+                <td colspan="2">
+                    <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                    ></label><br><br>
+                 
+                             <label><b>Report Of :</b> </label>
+                             <label>START DATE : {start_date}</label>
+                             <label>END DATE : {end_date}</label><br><br>
+             </tr>
+
+   
+            
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+              google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+
+
+      function drawChart() {
+      var data= google.visualization.arrayToDataTable([
+        ['Header', 'time', { role: 'style' } ],
+        ['Days Worked', 130, 'color: gray'],
+        ['Days Present', 120, 'color: #76A7FA'],
+        ['Hours Worked', 360, 'opacity: 0.2'],
+      ]);
+
+      var options = {
+        title: "REPORT"
+      }
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var chart1 = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart1.draw(view, options);
+  }
+  
+        
+
+            
+         function drawChart1() {
+        
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['R&D',     3],
+          ['LEARNING',      5],
+          ['DISCUSSION',  1],
+          ['IMPLEMENTATION',7],
+          ['ERROR DEBUGGING',   4],
+          ['CODING_TEST OFFLINE', 3],
+          ['CODING_TEST ONLINE', 3],
+          ['APTITUDE',    4],
+          ['OPS',  1]
+        ]);
+
+        var options = {
+          title: 'THE TIME SPENT ON THE FOLLOWING ATTRIBUTES'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+         }
+
+        function combo()
+        {
+           drawChart();
+           drawChart1();
+        }
+      
+            </script>
+         </table>
+         <div style="text-align: center;">
+            <label><b>USER ID:</b><i>{user_id}</i></label>
+            <br>
+            <label><b>NAME:</b><i>{name}</i></label>
+         </div><br><br>
+         <div id="columnchart_values" style="width: 800px; height: 200px;"></div>
+         <div id="piechart" style="width: 900px; height: 500px;"></div>
+         
+      </div>
+   </body>
+</html>
