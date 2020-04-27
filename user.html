@@ -75,7 +75,7 @@
          }
       </style>
    </head>
-   <body >
+   <body onload = "combo()">
       <div class="invoice-box">
          <table cellpadding="0" cellspacing="0">
             <tr class="top">
@@ -142,21 +142,107 @@
                 <th>CODING_TEST ONLINE</th>
                 <th>CODING_TEST OFFLINE</th>
                 <th>APTITUDE</th>
-                <th>REVISION</th> 
+                <th>OPS</th> 
                </tr>
                <tr class = "item">
                 <td>$coding_on</td>
                 <td>${coding_off}</td>
                 <td>${apti}</td>
-                <td>${revision}</td>
+                <td>${ops}</td>
                </tr>
             </table>
-
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+      
+      
+            function drawChart() {
+            var data= google.visualization.arrayToDataTable([
+              ['week', 'hrs', { role: 'style' } ],
+              ['1', 130, 'color: gray'],
+              ['2', 320, 'color: #76A7FA'],
+              ['3', 340, 'color: black'],
+              ['4', 500, 'color: blue']
+            ]);
+      
+            var options = {
+              title: "WEEKLY REPORT"
+            }
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                             { calc: "stringify",
+                               sourceColumn: 1,
+                               type: "string",
+                               role: "annotation" },
+                             2]);
+      
+            var chart2 = new google.visualization.ColumnChart(document.getElementById("columnchart"));
+            chart2.draw(view, options);
+        }
+        function drawChart1() {
+            var data= google.visualization.arrayToDataTable([
+              ['Header', 'days', { role: 'style' } ],
+              ['Days Worked', 130, 'color: gray'],
+              ['Days Present', 120, 'color: #76A7FA']
+            ]);
+      
+            var options = {
+              title: "DAYS WORKED"
+            }
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1,
+                             { calc: "stringify",
+                               sourceColumn: 1,
+                               type: "string",
+                               role: "annotation" },
+                             2]);
+      
+            var chart1 = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+            chart1.draw(view, options);
+        }
+              
+      
+                  
+               function drawChart2() {
+              
+              var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['R&D',     3],
+                ['LEARNING',      5],
+                ['DISCUSSION',  1],
+                ['IMPLEMENTATION',7],
+                ['ERROR DEBUGGING',   4],
+                ['CODING_TEST OFFLINE', 3],
+                ['CODING_TEST ONLINE', 3],
+                ['APTITUDE',    4],
+                ['OPS',  1]
+              ]);
+      
+              var options = {
+                title: 'THE TIME SPENT ON THE FOLLOWING ATTRIBUTES'
+              };
+      
+              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      
+              chart.draw(data, options);
+               }
+      
+              function combo()
+              {
+                 drawChart();
+                 drawChart1();
+                 drawChart2();
+              }
             
-         </table>
-         <br/><br>
+                  </script>
 
-         <h2 class="justify-center">Hey!! The Number of Hours you need to work to reach <br><br>TOP 10 is ${top_10}<br><br>TOP 20 is ${top_20} </h2>
+         </table>
+         <div id="columnchart" style="width: 800px; height: 200px;"></div><br>
+         <div id="columnchart_values" style="width: 800px; height: 200px;"></div><br>
+         <div id="piechart" style="width: 900px; height: 500px;"></div>
+         
+         <h2 class="justify-center">Hey!! The Number of Hours you need to work to reach <br><br>TOP 10 is ${top_10}<br><br>TOP 20is ${top_20} </h2>
       </div>
    </body>
 </html>
