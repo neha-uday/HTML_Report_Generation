@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>PDF Template Of User</title>
+      <style>
+         .invoice-box {
+         max-width: 800px;
+         margin: auto;
+         padding: 30px;
+         border: 1px solid #eee;
+         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+         font-size: 16px;
+         line-height: 24px;
+         font-family: 'Helvetica Neue', 'Helvetica';
+         color: #555;
+         }
+         .margin-top {
+         margin-top: 50px;
+         }
+         .justify-center {
+         text-align: center;
+         }
+         .invoice-box table {
+         width: 100%;
+         line-height: inherit;
+         text-align: left;
+         }
+         .invoice-box table td {
+         padding: 5px;
+         vertical-align: top;
+         }
+         .invoice-box table tr td:nth-child(2) {
+         text-align: right;
+         }
+         .invoice-box table tr.top table td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.top table td.title {
+         font-size: 45px;
+         line-height: 45px;
+         color: #333;
+         text-align: center;
+         
+         }
+         .invoice-box table tr.information table td {
+         padding-bottom: 40px;
+         }
+         .invoice-box table tr.heading th {
+         background: #eee;
+         border-bottom: 1px solid #ddd;
+         font-weight: bold;
+         text-align: center;
+         }
+         .invoice-box table tr.details td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.item td {
+         border-bottom: 1px solid #eee;
+         text-align: center;
+
+         }
+      
+         @media only screen and (max-width: 600px) {
+         .invoice-box table tr.top table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         .invoice-box table tr.information table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         }
+      </style>
+   </head>
+   <body onload="drawChart()">
+      <div class="invoice-box">
+         <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+               <td colspan="2">
+                  <table>
+                     <tr>
+                        <td class="title"><img src="athrvlogo.jpeg" alt="Logo of Athrv-Ed" 
+                           style="width:100%; max-width:156px;align-items: center;"></td>
+                        <td>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr class="information">
+               <td colspan="2">
+                   <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                   ></label>
+                   <br><br>
+                   <label><b>REPORT OF:</b> </label>
+                   <label><b>Start Date:</b> {start_date}</label>
+                   <label><b>End Date:</b> {end_date}</label><br><br>
+          
+               </td>
+            </tr>
+           
+            <table>
+               <caption><b> YOUR REPORT</b></caption>
+               <tr class ="heading">
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Days Worked</th>
+                <th>Days Present</th>
+                <th>Hours Worked</th>
+               </tr>
+               <tr class = "item">
+                <td>${uuid}</td>
+                <td>${name}</td>
+                <td>${working_days}</td>
+                <td>${present_days}</td>
+                <td>${hours_worked}</td>
+               </tr>
+            </table>
+            <br><br>
+            <table>
+                <caption><b> REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></caption>
+                <tr class ="heading">
+                 <th> R&D </th>
+                 <th>LEARNING</th>
+                 <th>DISCUSSION</th>
+                 <th>IMPLEMENTATION</th> 
+                 <th>ERROR DEBUGGING</th>
+                </tr>
+                <tr class = "item">
+                 <td>${r_d}</td>
+                 <td>${learn}</td>
+                 <td>${disc}</td>
+                 <td>${implement}</td>
+                 <td>${error_bug}</td>
+                </tr>
+             </table><br>
+             <table>
+               <tr class ="heading">
+                <th>CODING_TEST ONLINE</th>
+                <th>CODING_TEST OFFLINE</th>
+                <th>APTITUDE</th>
+                <th>OPS</th> 
+               </tr>
+               <tr class = "item">
+                <td>$coding_on</td>
+                <td>${coding_off}</td>
+                <td>${apti}</td>
+                <td>${ops}</td>
+               </tr>
+            </table><br>
+           
+            <script src="https://d3js.org/d3.v5.min.js"></script>
+            <script type="text/javascript">
+
+                var dataset = [
+                  { "name": "A", "value": 5 },
+                  { "name": "B", "value": 6 },
+                  { "name": "C", "value": 8 },
+                  { "name": "D", "value": 1 },
+                  { "name": "E", "value": 2 },
+                  { "name": "F", "value": 6 },
+                  { "name": "G", "value": 8 },
+                  { "name": "H", "value": 6 },
+                  { "name": "I", "value": 10 },
+                  { "name": "J", "value": 9 }
+                ]
+               
+                var width = 400; // グラフの幅
+                var height = 300; // グラフの高さ
+                var radius = Math.min(width, height) / 2 - 10;
+               
+                // 2. SVG領域の設定
+                var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+               
+                g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+               
+                // 3. カラーの設定
+                var color = d3.scaleOrdinal()
+                  .range(["#DC3912", "#3366CC", "#109618", "#FF9900", "#990099"]);
+               
+                // 4. pieチャートデータセット用関数の設定
+                var pie = d3.pie()
+                  .value(function(d) { return d.value; })
+                  .sort(null);
+               
+                // 5. pieチャートSVG要素の設定
+                var pieGroup = g.selectAll(".pie")
+                  .data(pie(dataset))
+                  .enter()
+                  .append("g")
+                  .attr("class", "pie");
+               
+                arc = d3.arc()
+                  .outerRadius(radius)
+                  .innerRadius(0);
+               
+                pieGroup.append("path")
+                  .attr("d", arc)
+                  .attr("fill", function(d) { return color(d.index) })
+                  .attr("opacity", 0.75)
+                  .attr("stroke", "white");
+               
+                // 6. pieチャートテキストSVG要素の設定
+                var text = d3.arc()
+                  .outerRadius(radius - 30)
+                  .innerRadius(radius - 30);
+               
+                pieGroup.append("text")
+                  .attr("fill", "black")
+                  .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
+                  .attr("dy", "5px")
+                  .attr("font", "10px")
+                  .attr("text-anchor", "middle")
+                  .text(function(d) { return d.data.name; });
+
+                </script>
+         </table>
+          
+         <h2 class="justify-center">Hey!! The Number of Hours you need to work to reach <br><br>TOP 10 is ${top_10}<br><br>TOP 20is ${top_20} </h2>
+      </div>
+   </body>
+</html>
