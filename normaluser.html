@@ -91,7 +91,7 @@
           }
        </style>
     </head>
-    <body >
+    <body onload="combo()">
        <div class="invoice-box">
           <table cellpadding="0" cellspacing="0">
              <tr class="top">
@@ -177,133 +177,74 @@
              </table>
 
              <script src="https://d3js.org/d3.v5.min.js"></script>
-            
+             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+             <script type = "text/javascript">
+                  function bar() {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "WEEKLY REPORT"
+	},
+	axisY: {
+		title: "Number of Hours"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "week",
+		dataPoints: [      
+			{ y: 300, label: "1" },
+			{ y: 266,  label: "2" },
+			{ y: 169,  label: "3" },
+			{ y: 158,  label: "4" },
+			{ y: 142,  label: "5" },
+			
+
+		]
+	}]
+});
+chart.render();
+}
+function bar1() {
+
+var chart = new CanvasJS.Chart("chartC", {
+	
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "DAYS WORKED"
+	},
+	axisY: {
+		title: "Number of Days"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "crimson",
+		legendText: "ANALYSIS",
+		dataPoints: [      
+			{ y: 300, label: "WORKING DAYS" , color:"palevioletred" },
+			{ y: 266,  label: "PRESENT DAYS", color:"#76A7FA" }
+			
+		]
+	}]
+});
+chart.render();
+}
+
+function combo()
+{
+    bar();
+    bar1();
+}
+            </script>
          </table>
-         <div style="text-align: center;">
-            <label><b><u>WEEKLY REPORT</u></b></label>
-         </div>
          
-         <div class ="bar">
-            <script type="text/javascript">
-                // 1. データの準備
-  var dataset = [
-    { "week": "1", "Hours": 5 },
-    { "week": "2", "Hours": 6 },
-    { "week": "3", "Hours": 13 },
-    { "week": "4", "Hours": 4 },
-    { "week": "5", "Hours": 6 },
-    { "week": "6", "Hours": 8 },
-    { "week": "7", "Hours": 9 },
-    { "week": "8", "Hours": 12 },
-   
-  ]
-  var width = 400; // グラフの幅
-  var height = 300; // グラフの高さ
-  var padding = 30; // スケール表示用マージン
-  
-  // 2. SVG領域の設定
-  var svg = d3.select(".bar").append("svg").attr("width", width).attr("height", height);
- 
-  // 3. 軸スケールの設定
-  var xScale = d3.scaleBand()
-    .rangeRound([padding, width - padding])
-    .padding(0.1)
-    .domain(dataset.map(function(d) { return d.week; }));
- 
-  var yScale = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function(d) { return d.Hours; })])
-    .range([height - padding, padding]);
- 
-  // 4. 軸の表示
-  svg.append("g")
-    .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
-    .call(d3.axisBottom(xScale));
- 
-  svg.append("g")
-    .attr("transform", "translate(" + padding + "," + 0 + ")")
-    .call(d3.axisLeft(yScale));
- 
-  // 5. バーの表示
-  svg.append("g")
-    .selectAll("rect")
-    .data(dataset)
-    .enter()
-    .append("rect")
-    .attr("x", function(d) { return xScale(d.week); })
-    .attr("y", function(d) { return yScale(d.Hours); })
-    .attr("width", xScale.bandwidth())
-    .attr("height", function(d) { return height - padding - yScale(d.Hours); })
-    .attr("fill", "black");
-            
-            </script>
-         </div>
-         <div style="text-align: center;"><label>week</label></div>
-         <br>
-         <br>
-         <div style="text-align: center;"><label><b>DATA IN MONTHS</b></label><br><br>
-            <label>{week1}-{week2} : {month_1}</label><br>
-            <label>{week1}-{week2} : {month_1}</label><br>
-            <label>{week1}-{week2} : {month_1}</label><br>
-            <label>{week1}-{week2} : {month_1}</label><br>
-            <label>{week1}-{week2} : {month_1}</label>
-            </div>
-         <br><br>
-
-         <div style="text-align: center;">
-            <label><b><u>DAYS WORKED</u></b></label>
-         </div>
-
-
-         <div class ="bar2">
-            <script type="text/javascript">
-                // 1. データの準備
-  var dataset = [
-    { "X": "WORKING DAYS", "value": 130 },
-    { "X": "DAYS PRESENT", "value": 170 },
-    
-  ]
-  var width = 400; // グラフの幅
-  var height = 300; // グラフの高さ
-  var padding = 30; // スケール表示用マージン
-  
-  // 2. SVG領域の設定
-  var svg = d3.select(".bar2").append("svg").attr("width", width).attr("height", height);
- 
-  // 3. 軸スケールの設定
-  var xScale = d3.scaleBand()
-    .rangeRound([padding, width - padding])
-    .padding(0.1)
-    .domain(dataset.map(function(d) { return d.X; }));
- 
-  var yScale = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function(d) { return d.value; })])
-    .range([height - padding, padding]);
- 
-  // 4. 軸の表示
-  svg.append("g")
-    .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
-    .call(d3.axisBottom(xScale));
- 
-  svg.append("g")
-    .attr("transform", "translate(" + padding + "," + 0 + ")")
-    .call(d3.axisLeft(yScale));
- 
-  // 5. バーの表示
-  svg.append("g")
-    .selectAll("rect")
-    .data(dataset)
-    .enter()
-    .append("rect")
-    .attr("x", function(d) { return xScale(d.X); })
-    .attr("y", function(d) { return yScale(d.value); })
-    .attr("width", xScale.bandwidth())
-    .attr("height", function(d) { return height - padding - yScale(d.value); })
-    .attr("fill", "#76A7FA");
-            
-            </script>
-         </div>
-
         <br><br>
+
+        <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div><br>
+        <div id="chartC" style="height: 370px; max-width: 920px; margin: 0px auto;"></div><br><br>
 
         <div style="text-align: center;">
            <label><b><u>THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</u></b></label>
@@ -357,14 +298,14 @@
                 var height = 300; // グラフの高さ
                 var radius = Math.min(width, height) / 2 - 10;
                
-                // 2. SVG領域の設定
+               // 2. SVG領域の設定
                 var svg = d3.select(".piechart").append("svg").attr("width", width).attr("height", height);
                
                 g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
                
                 // 3. カラーの設定
                 var color = d3.scaleOrdinal()
-                  .range(["#DC3912", "#3366CC", "#109618", "#FF9900", "#990099","#76A7FA",]);
+                  .range(["#DC3912", "#3366CC", "#109618", "#FF9900", "#990099","#76A7FA","crimson","rosybrown","palevioletred"]);
                 
                 // 4. pieチャートデータセット用関数の設定
                 var pie = d3.pie()
