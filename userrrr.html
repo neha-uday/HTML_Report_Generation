@@ -1,0 +1,782 @@
+module.exports.search = async(x) =>{
+  console.log("in index_3 pdf");
+  console.log(x);
+
+ //var today1 = new Date();
+ //today1.setDate(today1.getDate()-duration)
+ //var start_date=today1.toISOString().substring(0, 10);
+ 
+ //var today2 = new Date();
+ //today2.setDate(today2.getDate())
+ //var end_date=today2.toISOString().substring(0,10);
+
+ var start_date1=new Date(x[0].startdate);
+ console.log(start_date1)
+ var end_date1=new Date(x[0].enddate);
+ console.log(end_date1)
+
+ 
+ var start_date2=new Date(x[0].startdate);
+ start_date2.setDate(start_date2.getDate())
+ var start_date=start_date2.toISOString().substring(0, 10)
+ console.log(start_date)
+ 
+ var end_date2=new Date(x[0].enddate);
+ end_date2.setDate(end_date2.getDate())
+ var end_date=end_date2.toISOString().substring(0, 10)
+ console.log(end_date)
+
+ var uuid=x[0].user_id;
+ var name=x[0].name;
+ var working_days=0;
+ console.log(working_days)
+ var present_days=x[0].attendance;
+ var hours_worked=x[0].totalhrs.hours;
+ if(x[0].avg_randd.hours==undefined)
+ {
+    console.log("Inside randd snakl")
+    x[0].avg_randd.hours=0
+ }
+ if(x[0].avg_randd.minutes==undefined)
+ {
+    x[0].avg_randd.minutes=0
+ }
+ var r_d =(x[0].avg_randd.hours+x[0].avg_randd.minutes/60).toFixed(2);
+ console.log("rand",r_d)
+ if(x[0].avg_learning.hours==undefined)
+ {
+    console.log("Inside randd snak2")
+    x[0].avg_learning.hours=0
+ }
+ if(x[0].avg_learning.minutes==undefined)
+ {
+    x[0].avg_learning.minutes=0
+ }
+ var learn =(x[0].avg_randd.hours+x[0].avg_randd.minutes/60).toFixed(2);
+
+
+ if(x[0].avg_discussion.hours==undefined)
+ {
+    x[0].avg_discussion.hours=0;
+ }
+ if(x[0].avg_discussion.minutes==undefined)
+ {
+    x[0].avg_discussion.minutes=0
+ }
+ 
+ 
+ var disc=(x[0].avg_discussion.hours+x[0].avg_discussion.minutes/60).toFixed(2);
+ if (x[0].avg_implementationtime.hours==undefined)
+ {
+    x[0].avg_implementationtime.hours=0;
+ }
+ if(x[0].avg_implementationtime.minutes==undefined)
+ {
+    x[0].avg_implementationtime.minutes=0;
+ }
+ var implement=(x[0].avg_implementationtime.hours+x[0].avg_implementationtime.minutes/60).toFixed(2);
+ if(x[0].avg_apti_f.hours==undefined)
+ {
+    x[0].avg_apti_f.hours=0;
+ }
+ if(x[0].avg_apti_f.minutes==undefined)
+ {
+    x[0].avg_apti_f.minutes=0;
+ }
+ var apti=(x[0].avg_apti_f.hours+x[0].avg_apti_f.minutes/60).toFixed(2);
+ if(x[0].avg_codingtest_online_f.hours==undefined)
+ {
+    x[0].avg_codingtest_online_f.hours=0;
+ }
+ if(x[0].avg_codingtest_online_f.minutes==undefined)
+ {
+    x[0].avg_codingtest_online_f.minutes=0
+ }
+ console.log("testing")
+ var coding_on=(x[0].avg_codingtest_online_f.hours+x[0].avg_codingtest_online_f.minutes/60).toFixed(2);
+ if(x[0].avg_codingtest_offline_f.hours==undefined)
+ {
+    x[0].avg_codingtest_offline_f.hours=0
+ }
+ if(x[0].avg_codingtest_offline_f.minutes==undefined)
+ {
+    x[0].avg_codingtest_offline_f.minutes=0
+ }
+ if(x[0].avg_codingtest_offline_f.hours==undefined)
+ {
+    x[0].avg_codingtest_offline_f.hours=0
+ }
+ if(x[0].avg_codingtest_offline_f.minutes==undefined)
+ {
+    x[0].avg_codingtest_offline_f.minutes=0;
+ }
+ var coding_off=(x[0].avg_codingtest_offline_f.hours+x[0].avg_codingtest_offline_f.minutes/60).toFixed(2);
+ if(x[0].avg_error_debugging.hours==undefined)
+ {
+    x[0].avg_error_debugging.hours=0;
+ }
+ if(x[0].avg_error_debugging.minutes==undefined)
+ {
+    x[0].avg_error_debugging.minutes=0;
+ }
+ if(x[0].errordebugging_f.hours==undefined)
+ {
+    x[0].errordebugging_f.hours=0;
+ }
+ if(x[0].errordebugging_f.minutes==undefined)
+ {
+    x[0].errordebugging_f.minutes=0;
+ }
+ var error_bug=(x[0].avg_error_debugging.hours+x[0].avg_error_debugging.minutes/60+x[0].errordebugging_f.hours+x[0].errordebugging_f.minutes/60).toFixed(2);
+ if(x[0].avg_revision_f.hours==undefined)
+ {
+    x[0].avg_revision_f.hours=0;
+ }
+ if(x[0].avg_revision_f.minutes==undefined)
+ {
+    x[0].avg_revision_f.minutes=0;
+ }
+ var revision=(x[0].avg_revision_f.hours+x[0].avg_revision_f.minutes/60).toFixed(2);
+ if(x[0].avg_ops.hours==undefined)
+ {
+    x[0].avg_ops.hours=0;
+ }
+ if(x[0].avg_ops.minutes==0)
+ {
+    x[0].avg_ops.minutes=0;
+ }
+ if(x[0].avghrs.hours==undefined)
+ {
+    x[0].avghrs.hours=0;
+ }
+ if(x[0].avghrs.minutes==undefined)
+ {
+    x[0].avghrs.minutes=0;
+ }
+ var avg_hours_worked=(x[0].avghrs.hours+x[0].avghrs.minutes/60).toFixed(2)
+ console.log("avg hrs tag",avg_hours_worked)
+ var ops= (x[0].avg_ops.hours+x[0].avg_ops.minutes/60).toFixed(2)
+ var hours_goal1=(x[0].top3-avg_hours_worked).toFixed(2);
+ var hours_goal2=(x[0].top5-avg_hours_worked).toFixed(2);
+ var name=x[0].name;
+
+
+  console.log(uuid);
+  console.log(working_days)
+  console.log(present_days)
+  console.log(hours_worked)
+  const today = new Date();
+  console.log("!!START!!");
+ console.log(uuid);
+ console.log(name);
+ console.log(start_date);
+ console.log(end_date);
+ console.log(working_days);
+ console.log(present_days);
+ console.log(hours_worked);
+ console.log(avg_hours_worked);
+ console.log(r_d);
+ console.log(learn);
+ console.log(disc);
+ console.log(implement);
+ console.log(error_bug);
+ console.log(apti);
+ console.log(coding_on);
+ console.log(coding_off);
+ console.log(revision);
+ console.log(ops);
+ console.log(hours_goal1);
+ console.log(hours_goal2);
+ console.log("!!END!!");
+ console.log("Test")
+ if(x[0].weekly[0] != undefined)
+ {
+    
+    var week1 = x[0].weekly[0].week;
+ var week1_hr = x[0].weekly[0].totalhrs.hours;
+ }
+ 
+ else
+ {
+    var week1=0;
+    var week1_hr=0;
+ }
+ if(x[0].weekly[1] != undefined)
+ {
+
+    var week2 = x[0].weekly[1].week;
+ var week2_hr = x[0].weekly[1].totalhrs.hours;
+ }
+ else
+ {
+    var week2=0;
+    var week2_hr=0;
+ }
+ if(x[0].weekly[2] != undefined)
+ {
+
+    var week3 = x[0].weekly[2].week;
+ var week3_hr = x[0].weekly[2].totalhrs.hours;
+ }
+ else
+ {
+    var week3=0;
+    var week3_hr=0;
+ }
+ if(x[0].weekly[3] != undefined)
+ {
+
+    var week4 = x[0].weekly[3].week;
+ var week4_hr = x[0].weekly[3].totalhrs.hours;
+ }
+ else
+ {
+    var week4=0;
+    var week4_hr=0;
+ }
+ if(x[0].weekly[4] != undefined)
+ {
+
+    var week5= x[0].weekly[4].week;
+ var week5_hr = x[0].weekly[4].totalhrs.hours;
+ }
+ else
+ {
+    var week5=0;
+    var week5_hr=0;
+ }
+ if(x[0].weekly[5] != undefined)
+ {
+
+    var week6 = x[0].weekly[5].week;
+ var week6_hr = x[0].weekly[5].totalhrs.hours;
+ }
+ else
+ {
+    var week6=0;
+    var week6_hr=0;
+ }
+ if(x[0].weekly[6] != undefined)
+ {
+
+    var week7 = x[0].weekly[6].week;
+ var week7_hr = x[0].weekly[6].totalhrs.hours;
+ }
+ else
+ {
+    var week7=0;
+    var week7_hr=0;
+ }
+ if(x[0].weekly[7] != undefined)
+ {
+    var week8 = x[0].weekly[7].week;
+ var week8_hr = x[0].weekly[7].totalhrs.hours;
+ }
+ else
+ {
+    var week8=0;
+    var week8_hr=0;
+ }
+ if(x[0].weekly[8] != undefined)
+ {
+    var week9 = x[0].weekly[8].week;
+ var week9_hr = x[0].weekly[8].totalhrs.hours;
+ }
+ else
+ {
+    var week9=0;
+    var week9_hr=0;
+ }
+ if(x[0].weekly[9] != undefined)
+ {
+    var week10 = x[0].weekly[9].week;
+ var week10_hr = x[0].weekly[9].totalhrs.hours;
+ }
+ else
+ {
+    var week10=0;
+    var week10_hr=0;
+ }
+ if(x[0].weekly[10] != undefined)
+ {
+    var week11 = x[0].weekly[10].week;
+ var week11_hr = x[0].weekly[10].totalhrs.hours;
+ }
+ else
+ {
+    var week11=0;
+    var week11_hr=0;
+ }
+ if(x[0].weekly[11] != undefined)
+ {
+    var week12 = x[0].weekly[11].week;
+ var week12_hr = x[0].weekly[11].totalhrs.hours;
+ }
+ else
+ {
+    var week12=0;
+    var week12_hr=0;
+ }
+ if(x[0].weekly[12] != undefined)
+ {
+    var week13 = x[0].weekly[12].week;
+ var week13_hr = x[0].weekly[12].totalhrs.hours;
+ }
+ else
+ {
+    var week13=0;
+    var week13_hr=0;
+ }
+ if(x[0].weekly[13] != undefined)
+ {
+    var week14 = x[0].weekly[13].week;
+ var week14_hr = x[0].weekly[13].totalhrs.hours;
+ }
+ else
+ {
+    var week14=0;
+    var week14_hr=0;
+ }
+ if(x[0].weekly[14] != undefined)
+ {
+    var week15 = x[0].weekly[14].week;
+ var week15_hr = x[0].weekly[14].totalhrs.hours;
+ }
+ else
+ {
+    var week15=0;
+    var week15_hr=0;
+ }
+ if(x[0].weekly[15] != undefined)
+ {
+    var week16 = x[0].weekly[15].week;
+ var week16_hr = x[0].weekly[15].totalhrs.hours;
+ }
+ else
+ {
+    var week16=0;
+    var week16_hr=0;
+ }
+ if(x[0].weekly[16] != undefined)
+ {
+    var week17 = x[0].weekly[16].week;
+ var week17_hr = x[0].weekly[16].totalhrs.hours;
+ }
+ else
+ {
+    var week17=0;
+    var week17_hr=0;
+ }
+ if(x[0].weekly[17] != undefined)
+ {
+    var week18 = x[0].weekly[17].week;
+ var week18_hr = x[0].weekly[17].totalhrs.hours;
+ }
+ else
+ {
+    var week18=0;
+    var week18_hr=0;
+ }
+ if(x[0].weekly[18] != undefined)
+ {
+    var week19 = x[0].weekly[18].week;
+ var week19_hr = x[0].weekly[18].totalhrs.hours;
+ }
+ else
+ {
+    var week19=0;
+    var week19_hr=0;
+ }
+ console.log("Hy")
+ if(x[0].weekly[19] != undefined)
+ {
+    var week20 = x[0].weekly[19].week;
+ var week20_hr = x[0].weekly[19].totalhrs.hours;
+ }
+ else
+ {
+    var week20=0;
+    var week20_hr=0;
+ }
+ console.log("kiki")
+ console.log(x[0].weekly[19])
+ console.log(x[0].weekly[1])
+ console.log(week1)
+ console.log(week2)
+ console.log(week3)
+ console.log(week20)
+ console.log(week1_hr)
+ console.log(week2_hr)
+ console.log(week3_hr)
+ console.log(week20_hr)
+ 
+
+return `<!doctype html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>PDF Template Of User</title>
+     <style>
+        .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica';
+        color: #555;
+        }
+        .margin-top {
+        margin-top: 50px;
+        }
+        .justify-center {
+        text-align: center;
+        }
+        .invoice-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+        }
+        .invoice-box table td {
+        padding: 5px;
+        vertical-align: top;
+        }
+        .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+        }
+        .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+        }
+        .invoice-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+        text-align: center;
+        
+        }
+        .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+        }
+        .invoice-box table tr.heading th {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+        text-align: center;
+        }
+        .invoice-box table tr.details td {
+        padding-bottom: 20px;
+        }
+        .invoice-box table tr.item td {
+        border-bottom: 1px solid #eee;
+        text-align: center;
+
+        }
+        .piechart{
+ width:100%;
+ height:100%;
+ text-align:center;
+  margin-top: -350px;
+  padding-left: 100px; }
+  .bar{
+     width:100%;
+     height: 100%;
+     text-align: center;
+  }
+  .bar2{
+     width:100%;
+     height: 100%;
+     text-align: center;
+  }
+     
+        @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+        }
+        .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+        }
+        }
+     </style>
+  </head>
+  <body onload="combo()" >
+     <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+           <tr class="top">
+              <td colspan="2">
+                 <table>
+                    <tr>
+                       <td class="title"><img src="file:///C:/Users/user/Documents/AtarV-Ed-portal-master/model/pdf_document/athrvlogo.jpeg" alt="Logo of Athrv-Ed" 
+                          style="width:100%; max-width:156px;align-items: center;"></td>
+                       <td>
+                       </td>
+                    </tr>
+                 </table>
+              </td>
+           </tr>
+           <tr class="information">
+              <td colspan="2">
+                  <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                  </label>
+                  <br><br>
+                  <label><b>User Id:</b>${uuid} </label><br>
+                  <label><b>REPORT OF:</b>${name} </label><br>
+                  <label><b>Start Date:</b> ${start_date}</label><br>
+                  <label><b>End Date:</b> ${end_date}</label><br><br>
+         
+              </td>
+           </tr>
+          
+           <table>
+              <caption><b> YOUR REPORT</b></caption>
+              <tr class ="heading">
+               <th>Days Worked</th>
+               <th>Days Present</th>
+               <th>Hours Worked</th>
+               <th>Average Work</th>
+              </tr>
+              <tr class = "item">
+               <td>${working_days}</td>
+               <td>${present_days}</td>
+               <td>${hours_worked}</td>
+               <td>${avg_hours_worked}</td>
+              </tr>
+           </table>
+           <br><br>
+           <table>
+               <caption><b> REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></caption>
+               <tr class ="heading">
+                <th> R&D </th>
+                <th>LEARNING</th>
+                <th>DISCUSSION</th>
+                <th>IMPLEMENTATION</th> 
+                <th>ERROR DEBUGGING</th>
+                
+                
+               </tr>
+               <tr class = "item">
+                <td>${r_d}</td>
+                <td>${learn}</td>
+                <td>${disc}</td>
+                <td>${implement}</td>
+                <td>${error_bug}</td>
+                
+                
+               </tr>
+            </table><br><br>
+              <table>
+              <tr class ="heading">
+              
+                <th>APTITUDE</th>
+               <th>CODING_TEST ONLINE</th>
+               <th>CODING_TEST OFFLINE</th>
+       
+               <th>REVISION</th> 
+               <th> OPS </th> 
+              </tr>
+              <tr class = "item">
+              <td>${apti}</td>
+               <td>${coding_on}</td>
+               <td>${coding_off}</td>
+               
+               <td>${revision}</td>
+               <td>${ops}</td>
+               </tr>
+           </table>
+
+           <script src="https://d3js.org/d3.v5.min.js"></script>
+           <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+           <script type = "text/javascript">
+            function bar() {
+
+          var chart = new CanvasJS.Chart("chartContainer", {
+         theme: "light2", // "light1", "light2", "dark1", "dark2"
+         title:{
+text: "WEEKLY REPORT"
+},
+axisY: {
+title: "Number of Hours"
+},
+data: [{        
+type: "column",  
+showInLegend: true, 
+legendMarkerColor: "grey",
+legendText: "week",
+dataPoints: [
+{ y: ${week1}, label: ${week1_hr} },
+{ y: ${week2}, label: ${week2_hr} },
+{ y: ${week3}, label: ${week3_hr} },
+{ y: ${week4}, label: ${week4_hr} },
+{ y: ${week5}, label: ${week5_hr} },
+{ y: ${week6}, label: ${week6_hr} },
+{ y: ${week7}, label: ${week7_hr}},
+{ y: ${week8}, label: ${week8_hr} },
+{ y: ${week9}, label: ${week9_hr}},
+{ y: ${week10}, label: ${week10_hr} },
+{ y: ${week11}, label: ${week11_hr} },
+{ y: ${week12}, label: ${week12_hr} },
+{ y: ${week13}, label: ${week13_hr} },
+{ y: ${week14}, label: ${week14_hr} },
+{ y: ${week15}, label: ${week15_hr} },
+{ y: ${week16}, label: ${week16_hr} },
+{ y: ${week17}, label: ${week17_hr}},
+{ y: ${week18}, label: ${week18_hr} },
+{ y: ${week19}, label: ${week19_hr}},
+{ y: ${week20}, label: ${week20_hr} },
+]
+
+}]
+});
+chart.render();
+}
+function bar1() {
+
+var chart = new CanvasJS.Chart("chartC", {
+
+theme: "light2", // "light1", "light2", "dark1", "dark2"
+title:{
+text: "DAYS WORKED"
+},
+axisY: {
+title: "Number of Days"
+},
+data: [{        
+type: "column",  
+showInLegend: true, 
+legendMarkerColor: "crimson",
+legendText: "ANALYSIS",
+dataPoints: [      
+{ y: ${working_days}, label: "WORKING DAYS" , color:"palevioletred" },
+{ y: ${present_days} ,  label: "PRESENT DAYS", color:"#76A7FA" }
+
+]
+}]
+});
+chart.render();
+}
+
+function combo()
+{
+bar();
+bar1();
+}
+</script> 
+       </table><br><br><br><br><br>
+      <br><br>
+       
+      <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div><br>
+      <div id="chartC" style="height: 370px; max-width: 920px; margin: 0px auto;"></div><br><br>
+  
+      <div style="text-align: center;">
+         <label><b><u>THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</u></b></label>
+      </div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color:#DC3912;"></div>
+       <div style="margin-top:-19px;padding-left: 30px;"><label><b>R&D</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: #3366CC;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Learning</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: #109618;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Discussion</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: #FF9900;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Implementation</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: #990099;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Error_Debugging</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: #76A7FA;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Coding_test-OFFLINE</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: crimson;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Coding_test-ONLINE</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: rosybrown;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>Aptitude</b></label></div><br>
+
+       <div style="width:15px;height:10px;border:1px solid #000;background-color: palevioletred;"></div><br>
+       <div style="margin-top:-42px;padding-left: 30px;"><label><b>OPS</b></label></div><br>
+       
+            
+     
+
+      <div class="piechart">
+      <script type="text/javascript">
+              var dataset = [
+                { "name": "R&D", "value": ${r_d} },
+                { "name": "LEARNING", "value": ${learn}},
+                { "name": "DISCUSSION", "value": ${disc} },
+                { "name": "IMPLEMENTATION", "value": ${implement} },
+                { "name": "ERROR DEBUGGING", "value": ${error_bug} },
+                { "name": "CODING_TEST OFFLINE", "value": ${coding_off}},
+                { "name": "CODING_TEST ONLINE", "value": ${coding_on}},
+                { "name": "APTITUDE", "value": ${apti} }, 
+                { "name": "OPS", "value": ${ops} }
+              ]
+             
+              var width = 400; // グラフの幅
+              var height = 300; // グラフの高さ
+              var radius = Math.min(width, height) / 2 - 10;
+             
+              // 2. SVG領域の設定
+              var svg = d3.select(".piechart").append("svg").attr("width", width).attr("height", height);
+             
+              g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+             
+              // 3. カラーの設定
+              var color = d3.scaleOrdinal()
+                .range(["#DC3912", "#3366CC", "#109618", "#FF9900", "#990099","#76A7FA",]);
+              
+              // 4. pieチャートデータセット用関数の設定
+              var pie = d3.pie()
+                .value(function(d) { return d.value; })
+                .sort(null);
+             
+              // 5. pieチャートSVG要素の設定
+              var pieGroup = g.selectAll(".pie")
+                .data(pie(dataset))
+                .enter()
+                .append("g")
+                .attr("class", "pie");
+             
+              arc = d3.arc()
+                .outerRadius(radius)
+                .innerRadius(0);
+             
+              pieGroup.append("path")
+                .attr("d", arc)
+                .attr("fill", function(d) { return color(d.index) })
+                .attr("opacity", 0.75)
+                .attr("stroke", "white");
+             
+              // 6. pieチャートテキストSVG要素の設定
+              var text = d3.arc()
+                .outerRadius(radius - 30)
+                .innerRadius(radius - 30);
+             
+              pieGroup.append("text")
+                .attr("fill", "black")
+                .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
+                .attr("dy", "5px")
+                .attr("font", "10px")
+                .attr("text-anchor", "middle")
+                
+              </script></div> <br><br>
+
+           
+
+       
+        <h2 class="justify-center">Hey ! The Number of Hours you need to work to reach</h2>
+        <h2 class="justify-center">TOP 10 is ${hours_goal1}hrs</h2>
+        <h2 class="justify-center">TOP 20 is ${hours_goal2}hrs</h2>
+     </div>
+  </body>
+</html>
+}
