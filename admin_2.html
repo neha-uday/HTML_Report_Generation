@@ -459,7 +459,7 @@
             { x: "${s20}", y: "${h20}" }
 		]
 	},
-	{
+    {
 		type: "line",
 		showInLegend: true,
 		name: "DOMAIN",
@@ -476,7 +476,6 @@
             { x: "${s28}", y: "${h28}" },
             { x: "${s29}", y: "${h29}" },
             { x: "${s30}", y: "${h30}" } 
-            
 		]
 	}]
 });
@@ -491,102 +490,40 @@ function toogleDataSeries(e){
 	chart.render();
 }
 }
+function graph2(){
+        var chart = new CanvasJS.Chart("chart", {
 
-function graph2() {
-
-var chart = new CanvasJS.Chart("chart", {
-	
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "AVERAGE OF BEST PERFORMANCES"
+		text: "AVERAGE OF THE BEST PERFOMERS "
 	},
-	axisY :{
-		includeZero: false,
+	axisY: {
+		title: "Number of Hours"
 	},
-	toolTip: {
-		shared: true
-	},
-	legend: {
-		fontSize: 13
-	},
-	data: [{
-		type: "splineArea",
-		showInLegend: true,
-		name: "R&D",
-		yValueFormatString: "#####",
-		xValueFormatString: "MMM YYYY",
-		dataPoints: [
-            { x: "${w31}", y: "${v31}" },
-            { x: "${w32}", y: "${v32}" },
-            { x: "${w33}", y: "${v33}" },
-            { x: "${w34}", y: "${v34}" },	
-            { x: "${w35}", y: "${v35}" },
-            { x: "${w36}", y: "${v36}" },
-            { x: "${w37}", y: "${v37}" },
-            { x: "${w38}", y: "${v38}" },	
-            { x: "${w39}", y: "${v39}" },
-            { x: "${w40}", y: "${v40}" }
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "PERFORMANCE",
+		dataPoints: [      
+			{ y: "${r1]", label: "R&D" },
+			{ y: "${r2]",  label: "LEARNING" },
+			{ y: "${r3]",  label: "DISCUSSION" },
+            { y: "${r4]", label: "IMPLEMENTATION" },
+            { y: "${r5]", label: "ERROR_DEBUGGING" },
+            { y: "${r6]", label: "CODING_TEST-ONLINE" },
+            { y: "${r7]", label: "CODING_TEST-OFFLINE" },
+            { y: "${r8]", label: "APTITUDE" },
+            { y: "${r9]", label: "OPS" }
 		]
- 	},
-	{
-		type: "splineArea", 
-		showInLegend: true,
-		name: "LEARNING",
-		yValueFormatString: "#####",
-		dataPoints: [
-            { x: "${w21}", y: "${v21}" },
-            { x: "${w22}", y: "${v22}" },
-            { x: "${w23}", y: "${v23}" },
-            { x: "${w24}", y: "${v24}" },	
-            { x: "${w25}", y: "${v25}" },
-            { x: "${w26}", y: "${v26}" },
-            { x: "${w27}", y: "${v27}" },
-            { x: "${w28}", y: "${v28}" },	
-            { x: "${w29}", y: "${v29}" },
-            { x: "${w30}", y: "${v30}" }
-		
-		]
- 	},
-	{
-		type: "splineArea", 
-		showInLegend: true,
-		name: "ERROR_DEBUGGING",
-		yValueFormatString: "#####",     
-		dataPoints: [
-            { x: "${w11}", y: "${v11}" },
-            { x: "${w12}", y: "${v12}" },
-            { x: "${w13}", y: "${v13}" },
-            { x: "${w14}", y: "${v14}" },	
-            { x: "${w15}", y: "${v15}" },
-            { x: "${w16}", y: "${v16}" },
-            { x: "${w17}", y: "${v17}" },
-            { x: "${w18}", y: "${v18}" },	
-            { x: "${w19}", y: "${v19}" },
-            { x: "${w20}", y: "${v20}" }
-			
-		]
- 	},
-	{
-		type: "splineArea", 
-		showInLegend: true,    
-		name: "IMPLEMENTATION",
-		dataPoints:[
-			{ x: "${w1}", y: "${v1}" },
-            { x: "${w2}", y: "${v2}" },
-            { x: "${w3}", y: "${v3}" },
-            { x: "${w4}", y: "${v4}" },	
-            { x: "${w5}", y: "${v5}" },
-            { x: "${w6}", y: "${v6}" },
-            { x: "${w7}", y: "${v7}" },
-            { x: "${w8}", y: "${v8}" },	
-            { x: "${w9}", y: "${v9}" },
-            { x: "${w10}", y: "${v10}" }
-            ]
-    }]
+	}]
 });
-
-
 chart.render();
-}
+
+    }
+
+
+
 
     function graph3(){
         var chart = new CanvasJS.Chart("chartC", {
