@@ -1,148 +1,137 @@
 <!doctype html>
-<html>
-   <head>
-      <meta charset="utf-8">
-      <title>PDF Template Of User</title>
-      <style> 
-         .invoice-box {
-         max-width: 595px;
-         margin: auto;
-         padding: 30px;
-         border: 1px solid #eee;
-         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-         font-size: 16px;
-         line-height: 24px;
-         font-family:'poppins' ;
-         color: #555;
-         border-left: 60px solid rgb(0, 157, 220);
-         background-color: #eaf2f6;
-         
-         }
-
-         .margin-top {
-         margin-top: 50px;
-         }
-         .justify-center {
-         text-align: center;
-         }
-         .invoice-box table {
-          width:595px;  
+ <html>
+    <head>
+       <meta charset="utf-8">
+       <title>PDF Template Of User</title>
+       <style>
+          .invoice-box {
+          max-width: 595px;
+          margin: auto;
+          padding: 30px;
+          border: 1px solid #eee;
+          box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+          font-size: 16px;
+          line-height: 24px;
+          font-family: 'Poppins';
+          color: #555;
+          border-left: 60px solid rgb(0,157,220);
+          
+          }
+          .margin-top {
+          margin-top: 50px;
+          }
+          .justify-center {
+          text-align: center;
+          }
+          .invoice-box table {
+          width:595px;
           line-height: inherit;
           text-align: left;
-         }
-         .invoice-box table td {
-         padding: 5px;
-         vertical-align: top;
-         }
-         .invoice-box table tr td:nth-child(2) {
-         text-align: right;
-         }
-         .invoice-box table tr.top table td {
-         padding-bottom: 20px;
-         }
-         .invoice-box table tr.top table td.title {
-         font-size: 45px;
-         line-height: 45px;
-         color: #333;
-         
-         
-         }
-         .invoice-box table tr.top table td.side {
-         font-size: 45px;
-         line-height: 45px;
-         color: #333;
-         
-         
-         }
-         .invoice-box table tr.information table td {
-         padding-bottom: 40px;
-         }
-         .invoice-box table tr.heading th {
-         background: #eee;
-         border-bottom: 1px solid #ddd;
-         font-weight: bold;
-         text-align: center;
-         }
-         .invoice-box table tr.details td {
-         padding-bottom: 20px;
-         }
-         .invoice-box table tr.item td {
-         border-bottom: 1px solid #eee;
-         text-align: center;
-
-         }
-         .piechart{
+          }
+          .invoice-box table td {
+          padding: 5px;
+          vertical-align: top;
+          }
+          .invoice-box table tr td:nth-child(2) {
+          text-align: right;
+          }
+          .invoice-box table tr.top table td {
+          padding-bottom: 20px;
+          }
+          .invoice-box table tr.top table td.title {
+          font-size: 45px;
+          line-height: 45px;
+          color: #333;
+          
+          }
+          .invoice-box table tr.top table td.side{
+          font-size: 45px;
+          line-height: 45px;
+          color: #333;
+          
+          }
+          .invoice-box table tr.information table td {
+          padding-bottom: 40px;
+          }
+          .invoice-box table tr.heading th {
+          background: #eee;
+          border-bottom: 1px solid #ddd;
+          font-weight: bold;
+          text-align: center;
+          }
+          .invoice-box table tr.details td {
+          padding-bottom: 20px;
+          }
+          .invoice-box table tr.item td {
+          border-bottom: 1px solid #eee;
+          text-align: center;
+ 
+          }
+          .piechart{
 	 width:100%;
 	 height:100%;
 	 text-align:center;
     margin-top: -350px;
-    padding-left: 100px; }
+    padding-left: 100px;
+
+    }
     .bar{
        width:100%;
        height: 100%;
        text-align: center;
-       
     }
     .bar2{
        width:100%;
        height: 100%;
        text-align: center;
-      
     }
-    .line{
-        width: 100%;
-        height: 100%;
-        text-align: center;
+       
+          @media only screen and (max-width: 600px) {
+          .invoice-box table tr.top table td {
+          width: 100%;
+          display: block;
+          text-align: center;
+          }
+          .invoice-box table tr.information table td {
+          width: 100%;
+          display: block;
+          text-align: center;
+          }
+          }
+       </style>
+    </head>
+    <body>
+       <div class="invoice-box">
+          <table cellpadding="0" cellspacing="0">
+             <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                           <td class="title">
+                             <img src="symbol.jpeg" alt="Logo of Athrv-Ed" 
+                              style="width:100%; max-width:156px;"></td>
+                           <td class="side">
+                             <img src="logo.jpeg" alt="Logo of Athrv-Ed" 
+                              style="width:100%; max-width:156px;"></td>
+                           </td>
+                        </tr>
+                     </table>
+                </td>
+             </tr>
+             <tr class="information">
+                <td colspan="2">
+                    <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                    </label>
+                    <br><br>
+                    <label><b>User Id:</b>${uuid} </label><br>
+                    <label><b>REPORT OF:</b>${name} </label><br>
+                    <label><b>Start Date:</b> ${start_date}</label><br>
+                    <label><b>End Date:</b> ${end_date}</label><br><br>
+           
+                </td>
+             </tr>
     
-    }
-      
-         @media only screen and (max-width: 600px) {
-         .invoice-box table tr.top table td {
-         width: 100%;
-         display: block;
-         text-align: center;
-         }
-         .invoice-box table tr.information table td {
-         width: 100%;
-         display: block;
-         text-align: center;
-         }
-         }
-
-      </style>
-   </head>
-   <body onload="combo()"> 
-      <div class="invoice-box" >
-         <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-               <td colspan="2">
-                  <table>
-                     <tr>
-                        <td class="title">
-                          <img src="symbol.jpeg" alt="Logo of Athrv-Ed" 
-                           style="width:100%; max-width:156px;"></td>
-                        <td class="side">
-                          <img src="logo.jpeg" alt="Logo of Athrv-Ed" 
-                           style="width:100%; max-width:156px;"></td>
-                        </td>
-                     </tr>
-                  </table>
-               </td>
-            </tr>
-            
-            <tr class="information">
-               <td colspan="2">
-                <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
-                </label>
-                <br><br>
-                <label><b>User Id:</b>${uuid} </label><br>
-                <label><b>REPORT OF:</b>${name} </label><br>
-                <label><b>Start Date:</b> ${start_date}</label><br>
-                <label><b>End Date:</b> ${end_date}</label><br><br> 
-               </td>
-            </tr>
-
-            <table><br>
+             <table><br>
                 <caption><b> YOUR REPORT</b></caption>
                 <tr class ="heading">
                  <th>Days Worked</th>
@@ -159,7 +148,7 @@
              </table>
              <br><br>
              <table><br>
-                 <caption><b> REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></caption><br>
+                 <caption><b> REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></caption>
                  <tr class ="heading">
                   <th> R&D </th>
                   <th>LEARNING</th>
@@ -433,17 +422,10 @@
                   
                 </script></div>
 		
-                <br><br><br><br><br><br><br><br>
- 
-             
- 
-         
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
           <h2 class="justify-center">Hey ! The Number of Hours you need to work to reach</h2>
           <h2 class="justify-center">TOP 10 is ${hours_goal1}hrs</h2>
           <h2 class="justify-center">TOP 20 is ${hours_goal2}hrs</h2>
-
-
-        </div>
-        
-   </body>
-</html>
+    </div>
+    </body>
+ </html>
