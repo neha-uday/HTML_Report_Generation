@@ -5,7 +5,7 @@
       <title>PDF Template Of ADMIN</title>
       <style> 
          .invoice-box {
-         max-width: 595px;
+         max-width: 600px;
          margin: auto;
          padding: 30px;
          border: 1px solid #eee;
@@ -120,7 +120,7 @@
                      <tr>
                         <td class="title">
                           <img src="symbol.jpeg" alt="Logo of Athrv-Ed" 
-                           style="width:100%; max-width:156px;"></td>
+                           style="width:100%; max-width:300px;"></td>
                         <td class="side">
                           <img src="logo.jpeg" alt="Logo of Athrv-Ed" 
                            style="width:100%; max-width:156px;"></td>
@@ -520,125 +520,124 @@
           <div style="text-align: center;font-size: xx-large;"><label><b>REPORT IN GRAPH</b></label></div><BR>
     
           <div class = "line">
-              <script type="text/javascript">
-  // 1. データの準備
-  var dataset =  [
-    ["${c1}", "${k1}"],
-    ["${c2}", "${k2}"],
-    ["${c3}", "${k3}"],
-    ["${c4}", "${k4}"],
-    ["${c5}", "${k5}"],
-    ["${c6}", "${k6}"],
-    ["${c7}", "${k7}"],
-    ["${c8}", "${k8}"],
-    ["${c9}", "${k9}"],
-    ["${c10}", "${k10}"]
-  ];
-  var dataset_1 = [
-    ["${c11}", "${k11}"],
-    ["${c12}", "${k12}"],
-    ["${c13}", "${k13}"],
-    ["${c14}", "${k14}"],
-    ["${c15}", "${k15}"],
-    ["${c16}", "${k16}"],
-    ["${c17}", "${k17}"],
-    ["${c18}", "${k18}"],
-    ["${c19}", "${k19}"],
-    ["${c20}", "${k20}"]
-  ];
-
-  var dataset_2 =  [
-    ["${c21}", "${k21}"],
-    ["${c22}", "${k22}"],
-    ["${c23}", "${k23}"],
-    ["${c24}", "${k24}"],
-    ["${c25}", "${k25}"],
-    ["${c26}", "${k26}"],
-    ["${c27}", "${k27}"],
-    ["${c28}", "${k28}"],
-    ["${c29}", "${k29}"],
-    ["${c30}", "${k30}"]
-  ];
-  
-  var width = 600; // グラフの幅
-  var height = 500; // グラフの高さ
-  var margin = { "top": 50, "bottom": 80, "right": 50, "left": 80 };
- 
-  // 2. SVG領域の設定
-  var svg = d3.select(".line").append("svg").attr("width", width).attr("height", height);
- 
-  // 3. 軸スケールの設定
-  var xScale = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function(d) { return d[0]; })])
-    .domain([0, d3.max(dataset_1, function(d) { return d[0]; })])
-    .domain([0, d3.max(dataset_2, function(d) { return d[0]; })])
-    .range([margin.left, width - margin.right]);
- 
-  var yScale = d3.scaleLinear()
-    .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-    .domain([0, d3.max(dataset_1, function(d) { return d[0]; })])
-    .domain([0, d3.max(dataset_2, function(d) { return d[0]; })])
-    .range([height - margin.bottom, margin.top]);
- 
-  // 4. 軸の表示
-  var axisx = d3.axisBottom(xScale).ticks(5);
-  var axisy = d3.axisLeft(yScale).ticks(5);
- 
-  svg.append("g")
-    .attr("transform", "translate(" + 0 + "," + (height - margin.bottom) + ")")
-    .call(axisx)
-    .append("text")
-    .attr("fill", "black")
-    .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
-    .attr("y", 35)
-    .attr("text-anchor", "middle")
-    .attr("font-size", "10pt")
-    .attr("font-weight", "bold")
-    .text("Number of Weeks");
- 
-  svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + 0 + ")")
-    .call(axisy)
-    .append("text")
-    .attr("fill", "black")
-    .attr("text-anchor", "middle")
-    .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
-    .attr("y", -35)
-    .attr("transform", "rotate(-90)")
-    .attr("font-weight", "bold")
-    .attr("font-size", "10pt")
-    .text("Number Of Hours");
- 
-  // 5. ラインの表示
-  svg.append("path")
-    .datum(dataset)
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 2)
-    .attr("d", d3.line()
-      .x(function(d) { return xScale(d[0]); })
-      .y(function(d) { return yScale(d[1]); }));
-
-      svg.append("path")
-    .datum(dataset_1)
-    .attr("fill", "none")
-    .attr("stroke", "rosybrown")
-    .attr("stroke-width", 2)
-    .attr("d", d3.line()
-      .x(function(d) { return xScale(d[0]); })
-      .y(function(d) { return yScale(d[1]); }));
-
-      svg.append("path")
-    .datum(dataset_2)
-    .attr("fill", "none")
-    .attr("stroke", "crimson")
-    .attr("stroke-width", 2)
-    .attr("d", d3.line()
-      .x(function(d) { return xScale(d[0]); })
-      .y(function(d) { return yScale(d[1]); }));
-
-  
-            </script>
+            <script type="text/javascript">
+              // 1. データの準備
+              var dataset = [
+                [5, 20],
+                [25, 67],
+                [85, 21],
+                [100, 33],
+                [220, 88],
+                [250, 50],
+                [330, 95],
+                [410, 12],
+                [475, 44],
+                [480, 90]
+              ];
+            
+              var dataset_1 = [
+                [5, 20],
+                [15, 57],
+                [95, 21],
+                [150, 33],
+                [220, 88],
+                [250, 58],
+                [330, 85],
+                [400, 12],
+                [375, 24],
+                [280, 80]
+              ];
+            
+              var dataset_2 = [
+                [10, 20],
+                [35, 67],
+                [95, 21],
+                [150, 33],
+                [290, 18],
+                [10, 60],
+                [430, 95],
+                [210, 22],
+                [375, 44],
+                [880, 10]
+              ];
+             
+              var width = 400; // グラフの幅
+              var height = 300; // グラフの高さ
+              var margin = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
+             
+              // 2. SVG領域の設定
+              var svg = d3.select(".line").append("svg").attr("width", width).attr("height", height);
+             
+              // 3. 軸スケールの設定
+              var xScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+                .domain([0, d3.max(dataset_1, function(d) { return d[0]; })])
+                .domain([0, d3.max(dataset_2, function(d) { return d[0]; })])
+                .range([margin.left, width - margin.right]);
+             
+              var yScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+                .domain([0, d3.max(dataset_1, function(d) { return d[1]; })])
+                .domain([0, d3.max(dataset_2, function(d) { return d[1]; })])
+                .range([height - margin.bottom, margin.top]);
+             
+              // 4. 軸の表示
+              var axisx = d3.axisBottom(xScale).ticks(5);
+              var axisy = d3.axisLeft(yScale).ticks(5);
+             
+              svg.append("g")
+                .attr("transform", "translate(" + 0 + "," + (height - margin.bottom) + ")")
+                .call(axisx)
+                .append("text")
+                .attr("fill", "black")
+                .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
+                .attr("y", 35)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "10pt")
+                .attr("font-weight", "bold")
+                .text("X Label");
+             
+              svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+                .call(axisy)
+                .append("text")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle")
+                .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
+                .attr("y", -35)
+                .attr("transform", "rotate(-90)")
+                .attr("font-weight", "bold")
+                .attr("font-size", "10pt")
+                .text("Y Label");
+             
+              // 5. ラインの表示
+              svg.append("path")
+                .datum(dataset)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                  .x(function(d) { return xScale(d[0]); })
+                  .y(function(d) { return yScale(d[1]); }));
+            
+                  svg.append("path")
+                .datum(dataset_1)
+                .attr("fill", "none")
+                .attr("stroke", "crimson")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                  .x(function(d) { return xScale(d[0]); })
+                  .y(function(d) { return yScale(d[1]); }));
+            
+                  svg.append("path")
+                .datum(dataset_2)
+                .attr("fill", "none")
+                .attr("stroke", "rosybrown")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                  .x(function(d) { return xScale(d[0]); })
+                  .y(function(d) { return yScale(d[1]); }));
+              </script>
           </div>
  
          <br>
