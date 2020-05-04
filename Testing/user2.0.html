@@ -1,0 +1,527 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>PDF Template Of User</title>
+      <style>
+         .invoice-box {
+         max-width: 595px;
+         margin: auto;
+         padding: 30px;
+         border: 1px solid #eee;
+         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+         font-size: 16px;
+         line-height: 24px;
+         font-family: 'Poppins';
+         color: #555;
+         border-left: 60px solid rgb(0,157,220);
+         
+         }
+         .margin-top {
+         margin-top: 50px;
+         }
+         .justify-center {
+         text-align: center;
+         }
+         .invoice-box table {
+         width:595px;
+         line-height: inherit;
+         text-align: left;
+         }
+         .invoice-box table td {
+         padding: 5px;
+         vertical-align: top;
+         }
+         .invoice-box table tr td:nth-child(2) {
+         text-align: right;
+         }
+         .invoice-box table tr.top table td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.top table td.title {
+         font-size: 45px;
+         line-height: 45px;
+         color: #333;
+         
+         }
+         .invoice-box table tr.top table td.side{
+         font-size: 45px;
+         line-height: 45px;
+         color: #333;
+         
+         }
+         .invoice-box table tr.information table td {
+         padding-bottom: 40px;
+         }
+         .invoice-box table tr.heading th {
+         background: #eee;
+         border-bottom: 1px solid #ddd;
+         font-weight: bold;
+         text-align: center;
+         }
+         .invoice-box table tr.details td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.item td {
+         border-bottom: 1px solid #eee;
+         text-align: center;
+
+         }
+         .invoice-box table tr.det td {
+         border: 1px solid black;
+         border-collapse: collapse;
+         text-align: center;
+
+         }
+         .invoice-box table tr.head th {
+          background: #eee;
+          border: 1px solid black;
+         border-collapse: collapse;
+         text-align: center;
+         }
+        
+         .piechart{
+  width:100%;
+  height:100%;
+  text-align:center;
+   margin-top: -350px;
+   padding-left: 100px;
+
+   }
+   .bar{
+      width:100%;
+      height: 100%;
+      text-align: center;
+   }
+   .bar2{
+      width:100%;
+      height: 100%;
+      text-align: center;
+   }
+      
+         @media only screen and (max-width: 600px) {
+         .invoice-box table tr.top table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         .invoice-box table tr.information table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="invoice-box">
+         <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+               <td colspan="2">
+                   <table>
+                       <tr>
+          
+                            <td class="title">
+                              <img src="merge.jpeg" alt="Logo of Athrv-Ed" 
+                               style="width:100%; max-width:595px;"></td>
+                       </tr>
+                    </table>
+               </td>
+            </tr>
+            <tr class="information">
+               <td colspan="2">
+                   <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                   </label>
+                   <br><br>
+                   <label><b>User Id:</b>${uuid} </label><br>
+                   <label><b>REPORT OF:</b>${name} </label><br>
+                   <label><b>Start Date:</b> ${start_date}</label><br>
+                   <label><b>End Date:</b> ${end_date}</label><br><br>
+          
+               </td>
+            </tr>
+   
+            <table><br>
+               <caption><b> YOUR REPORT</b></caption>
+               <tr class ="heading">
+                <th>Days Worked</th>
+                <th>Days Present</th>
+                <th>Hours Worked</th>
+                <th>Average Work</th>
+               </tr>
+               <tr class = "item">
+                <td>${working_days}</td>
+                <td>${present_days}</td>
+                <td>${hours_worked}</td>
+                <td>${avg_hours_worked}</td>
+               </tr>
+            </table>
+            <br><br>
+            <table><br>
+                <caption><b> REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></caption>
+                <tr class ="heading">
+                 <th> R&D </th>
+                 <th>LEARNING</th>
+                 <th>DISCUSSION</th>
+                 <th>IMPLEMENTATION</th> 
+                 <th>ERROR DEBUGGING</th>
+                 
+                 
+                </tr>
+                <tr class = "item">
+                 <td>${r_d}</td>
+                 <td>${learn}</td>
+                 <td>${disc}</td>
+                 <td>${implement}</td>
+                 <td>${error_bug}</td>
+                 
+                 
+                </tr>
+             </table><br>
+               <table>
+               <tr class ="heading">
+               
+                 <th>APTITUDE</th>
+                <th>CODING_TEST ONLINE</th>
+                <th>CODING_TEST OFFLINE</th>
+        
+                <th>REVISION</th> 
+                <th> OPS </th> 
+               </tr>
+               <tr class = "item">
+               <td>${apti}</td>
+                <td>${coding_on}</td>
+                <td>${coding_off}</td>
+                
+                <td>${revision}</td>
+                <td>${ops}</td>
+                </tr>
+            </table>
+
+            <script src="https://d3js.org/d3.v5.min.js"></script>
+            </table>
+  
+              <div style="text-align: center;">
+                 <label><b><u>WEEKLY REPORT</u></b></label>
+              </div>
+              
+              <div class ="bar">
+                 <script type="text/javascript">
+                     // 1. データの準備
+       var dataset = [
+         { "week": "${week1}", "Hours": ${week1_hr} },
+         { "week": "${week2}", "Hours": ${week2_hr} },
+         { "week": "${week3}", "Hours": ${week3_hr} },
+         { "week": "${week4}", "Hours": ${week4_hr} },
+         { "week": "${week5}", "Hours": ${week5_hr} },
+         { "week": "${week6}", "Hours": ${week6_hr} },
+         { "week": "${week7}", "Hours": ${week7_hr}},
+         { "week": "${week8}", "Hours": ${week8_hr} },
+         { "week": "${week9}", "Hours": ${week9_hr}},
+         { "week": "${week10}", "Hours": ${week10_hr} },
+         { "week": "${week11}", "Hours": ${week11_hr} },
+         { "week": "${week12}", "Hours": ${week12_hr} },
+         { "week": "${week13}", "Hours": ${week13_hr} },
+         { "week": "${week14}", "Hours": ${week14_hr} },
+         { "week": "${week15}", "Hours": ${week15_hr} },
+         { "week": "${week16}", "Hours": ${week16_hr} },
+         { "week": "${week17}", "Hours": ${week17_hr}},
+         { "week": "${week18}", "Hours": ${week18_hr} },
+         { "week": "${week19}", "Hours": ${week19_hr}},
+         { "week": "${week20}", "Hours": ${week20_hr} },
+       ]
+       var width = 700; // グラフの幅
+       var height = 350; // グラフの高さ
+       var padding = 30; // スケール表示用マージン
+       
+       // 2. SVG領域の設定
+       var svg = d3.select(".bar").append("svg").attr("width", width).attr("height", height);
+      
+       // 3. 軸スケールの設定
+       var xScale = d3.scaleBand()
+         .rangeRound([padding, width - padding])
+         .padding(0.5)
+         .domain(dataset.map(function(d) { return d.week; }));
+      
+       var yScale = d3.scaleLinear()
+         .domain([0, d3.max(dataset, function(d) { return d.Hours; })])
+         .range([height - padding, padding]);
+      
+       // 4. 軸の表示
+       svg.append("g")
+         .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+         .call(d3.axisBottom(xScale));
+      
+       svg.append("g")
+         .attr("transform", "translate(" + padding + "," + 0 + ")")
+         .call(d3.axisLeft(yScale));
+      
+       // 5. バーの表示
+       svg.append("g")
+         .selectAll("rect")
+         .data(dataset)
+         .enter()
+         .append("rect")
+         .attr("x", function(d) { return xScale(d.week); })
+         .attr("y", function(d) { return yScale(d.Hours); })
+         .attr("width", xScale.bandwidth())
+         .attr("height", function(d) { return height - padding - yScale(d.Hours); })
+         .attr("fill", "black");
+                 
+                 </script>
+              </div>
+              <div style="text-align: center;"><label>week</label></div>
+              <br>
+              <table align="center"style="width:150px;">
+                <tr class="head">
+                    <th>WEEK</th>
+                    <th>MONTH</th>
+                </tr>
+                <tr class="det">
+                     <td>${c1_w}</td>
+                     <td>${month1}</td>
+                </tr>
+                <tr class="det">
+                  <td>${c2_w}</td>
+                  <td>${month2}</td>
+                </tr>
+                <tr class="det">
+                  <td>${c3_w}</td>
+                  <td>${month3}</td>
+                </tr>
+                <tr class="det">
+                  <td>${c4_w}</td>
+                  <td>${month4}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c5_w}</td>
+                  <td>${month5}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c6_w}</td>
+                  <td>${month6}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c7_w}</td>
+                  <td>${month7}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c8_w}</td>
+                  <td>${month8}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c9_w}</td>
+                  <td>${month9}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c10_w}</td>
+                  <td>${month10}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c11_w}</td>
+                  <td>${month11}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c12_w}</td>
+                  <td>${month12}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c13_w}</td>
+                  <td>${month13}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c14_w}</td>
+                  <td>${month14}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c15_w}</td>
+                  <td>${month15}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c16_w}</td>
+                  <td>${month16}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c17_w}</td>
+                  <td>${month17}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c18_w}</td>
+                  <td>${month18}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c19_w}</td>
+                  <td>${month19}</td>
+                 </tr>
+                 <tr class="det">
+                  <td>${c20_w}</td>
+                  <td>${month20}</td>
+                 </tr>
+              </table>
+              <br><br><br><br><br><br><br><br>
+
+     
+              <div style="text-align: center;">
+                 <label><b><u>DAYS WORKED</u></b></label>
+              </div>
+     
+     
+              <div class ="bar2">
+                 <script type="text/javascript">
+                     // 1. データの準備
+       var dataset = [
+         { "X": "WORKING DAYS", "value": ${working_days} },
+         { "X": "DAYS PRESENT", "value": ${present_days} },
+         
+       ]
+       var width = 400; // グラフの幅
+       var height = 300; // グラフの高さ
+       var padding = 30; // スケール表示用マージン
+       
+       // 2. SVG領域の設定
+       var svg = d3.select(".bar2").append("svg").attr("width", width).attr("height", height);
+      
+       // 3. 軸スケールの設定
+       var xScale = d3.scaleBand()
+         .rangeRound([padding, width - padding])
+         .padding(0.1)
+         .domain(dataset.map(function(d) { return d.X; }));
+      
+       var yScale = d3.scaleLinear()
+         .domain([0, d3.max(dataset, function(d) { return d.value; })])
+         .range([height - padding, padding]);
+      
+       // 4. 軸の表示
+       svg.append("g")
+         .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+         .call(d3.axisBottom(xScale));
+      
+       svg.append("g")
+         .attr("transform", "translate(" + padding + "," + 0 + ")")
+         .call(d3.axisLeft(yScale));
+      
+       // 5. バーの表示
+       svg.append("g")
+         .selectAll("rect")
+         .data(dataset)
+         .enter()
+         .append("rect")
+         .attr("x", function(d) { return xScale(d.X); })
+         .attr("y", function(d) { return yScale(d.value); })
+         .attr("width", xScale.bandwidth())
+         .attr("height", function(d) { return height - padding - yScale(d.value); })
+         .attr("fill", "#76A7FA");
+                 
+                 </script>
+              </div>
+     
+             <br><br>
+             <br><br>
+             <br><br>                 
+
+
+       <br><br><br><br>
+       <div style="text-align: center;"> 
+       <label><b><u>THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</u></b></label>
+       </div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color:#DC3912;"></div>
+        <div style="margin-top:-19px;padding-left: 30px;"><label><b>R&D</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: #3366CC;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Learning</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: #109618;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Discussion</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: #FF9900;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Implementation</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: #990099;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Error_Debugging</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: #76A7FA;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Coding_test-OFFLINE</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: crimson;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Coding_test-ONLINE</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: rosybrown;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>Aptitude</b></label></div><br>
+
+        <div style="width:15px;height:10px;border:1px solid #000;background-color: palevioletred;"></div><br>
+        <div style="margin-top:-42px;padding-left: 30px;"><label><b>OPS</b></label></div><br>
+
+ 
+           
+
+       <div class="piechart">
+       <script type="text/javascript">
+               var dataset =[
+                 { "name": "R&D", "value": ${r_d} },
+                 { "name": "LEARNING", "value": ${learn}},
+                 { "name": "DISCUSSION", "value": ${disc} },
+                 { "name": "IMPLEMENTATION", "value": ${implement} },
+                 { "name": "ERROR DEBUGGING", "value": ${error_bug} },
+                 { "name": "CODING_TEST OFFLINE", "value": ${coding_off}},
+                 { "name": "CODING_TEST ONLINE", "value": ${coding_on}},
+                 { "name": "APTITUDE", "value": ${apti} }, 
+                 { "name": "OPS", "value": ${ops} }
+               ]
+              
+               var width = 400; // グラフの幅
+               var height = 300; // グラフの高さ
+               var radius = Math.min(width, height) / 2 - 10;
+              
+              // 2. SVG領域の設定
+               var svg = d3.select(".piechart").append("svg").attr("width", width).attr("height", height);
+              
+               g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+              
+               // 3. カラーの設定
+               var color = d3.scaleOrdinal()
+                 .range(["#DC3912", "#3366CC", "#109618", "#FF9900", "#990099","#76A7FA","crimson","rosybrown","palevioletred"]);
+               
+               // 4. pieチャートデータセット用関数の設定
+               var pie = d3.pie()
+                 .value(function(d) { return d.value; })
+                 .sort(null);
+              
+               // 5. pieチャートSVG要素の設定
+               var pieGroup = g.selectAll(".pie")
+                 .data(pie(dataset))
+                 .enter()
+                 .append("g")
+                 .attr("class", "pie");
+              
+               arc = d3.arc()
+                 .outerRadius(radius)
+                 .innerRadius(0);
+              
+               pieGroup.append("path")
+                 .attr("d", arc)
+                 .attr("fill", function(d) { return color(d.index) })
+                 .attr("opacity", 0.75)
+                 .attr("stroke", "white");
+              
+               // 6. pieチャートテキストSVG要素の設定
+               var text = d3.arc()
+                 .outerRadius(radius - 30)
+                 .innerRadius(radius - 30);
+              
+               pieGroup.append("text")
+                 .attr("fill", "black")
+                 .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
+                 .attr("dy", "5px")
+                 .attr("font", "10px")
+                 .attr("text-anchor", "middle")
+                 
+               </script></div>
+   
+               <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+         <h2 class="justify-center">Hey ! The Number of Hours you need to work to reach</h2>
+         <h2 class="justify-center">TOP 10 is ${hours_goal1}hrs</h2>
+         <h2 class="justify-center">TOP 20 is ${hours_goal2}hrs</h2>
+   </div>
+   </body>
+</html>
