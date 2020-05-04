@@ -1,0 +1,910 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>PDF Template Of ADMIN</title>
+      <style> 
+         .invoice-box {
+         max-width: 600px;
+         margin: auto;
+         padding: 30px;
+         border: 1px solid #eee;
+         box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+         font-size: 16px;
+         line-height: 24px;
+         font-family:'poppins' ;
+         color: #555;
+         border-left: 60px solid rgb(0, 157, 220);
+         background-color: #eaf2f6;
+         
+         }
+
+         .margin-top {
+         margin-top: 50px;
+         }
+         .justify-center {
+         text-align: center;
+         }
+         .invoice-box table {
+          width:595px;  
+          line-height: inherit;
+          text-align: center;
+         }
+         .invoice-box table td {
+         padding: 5px;
+         vertical-align: top;
+         }
+         .invoice-box table tr td:nth-child(2) {
+         text-align: right;
+         }
+         .invoice-box table tr.top table td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.information table td {
+         padding-bottom: 20px;
+         }
+      
+         .invoice-box table tr.heading th {
+         background: #eee;
+         border-bottom: 1px solid #ddd;
+         font-weight: bold;
+         text-align: center;
+         width: 100px;
+         
+         }
+         .invoice-box table tr.details td {
+         padding-bottom: 20px;
+         }
+         .invoice-box table tr.item td {
+         border-bottom: 1px solid #eee;
+         text-align: center;
+         width: 100px;
+
+         }
+         .piechart{
+	 width:100%;
+	 height:100%;
+	 text-align:center;
+    margin-top: -350px;
+    padding-left: 100px; }
+    .bar{
+       width:100%;
+       height: 100%;
+       text-align: center;
+       
+    }
+    .bar2{
+       width:100%;
+       height: 100%;
+       text-align: center;
+      
+    }
+    .line{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    
+    }
+      
+         @media only screen and (max-width: 600px) {
+         .invoice-box table tr.top table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         .invoice-box table tr.information table td {
+         width: 100%;
+         display: block;
+         text-align: center;
+         }
+         }
+
+      </style>
+   </head>
+   <body onload="combo()"> 
+      <div class="invoice-box" >
+         <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+               <td colspan="2">
+                      <table>
+                     <tr>
+                        <td class="title">
+                          <img src="merge.jpeg" alt="Logo of Athrv-Ed" 
+                           style="width:100%; max-width:595px;"></td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            
+            <tr class="information">
+               <td colspan="2">
+                   <label><b>Issue Date:</b> ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                   ></label><br><br>
+                
+                            <label><b>Report Of :</b> </label>
+                            <label>${start_date}</label>
+                            <label>${end_date}</label>     <br><br>      
+               </td>
+            </tr>
+
+             <script type="text/javascript">
+
+             function GenerateTable() {
+                 //Build an array containing Customer records.
+                 var customers = new Array();
+                 customers.push(["uuid", "Name", "working_days","Present_days","total_hrs","avg_hours"]);
+                 customers.push(["${uuid1}", "${name1}", "${wd_1}","${pd_1}","${th_1}","${avg_1}"]);     
+                 
+          
+                 //Create a HTML Table element.
+                 var table = document.createElement("TABLE");
+                 table.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount = customers[0].length;
+          
+                 //Add the header row.
+                 var row = table.insertRow(-1);
+                 for (var i = 0; i < columnCount; i++) {
+                     var headerCell = document.createElement("TH");
+                     headerCell.innerHTML = customers[0][i];
+                     row.appendChild(headerCell);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < customers.length; i++) {
+                     row = table.insertRow(-1);
+                     for (var j = 0; j < columnCount; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = customers[i][j];
+                     }
+                 }
+          
+                 var dvTable = document.getElementById("dvTable");
+                 dvTable.innerHTML = "";
+                 dvTable.appendChild(table);
+        
+                 
+             }
+             function GenerateTable1() {
+                 //Build an array containing Customer records.
+                 var customers = new Array();
+                 customers.push(["uuid", "Name", "working_days","Present_days","total_hrs","avg_hours"]);
+                 customers.push(["${uuid1}", "${name1}", "${wd_1}","${pd_1}","${th_1}","${avg_1}"]);
+                 customers.push(["${uuid2}", "${name2}", "${wd_1}","${pd_2}","${th_2}","${avg_2}"]);
+                 customers.push(["${uuid3}", "${name3}", "${wd_1}","${pd_3}","${th_3}","${avg_3}"]);
+                 customers.push(["${uuid4}", "${name4}", "${wd_1}","${pd_4}","${th_4}","${avg_4}"]);
+                 customers.push(["${uuid5}", "${name5}", "${wd_1}","${pd_5}","${th_5}","${avg_5}"]);
+                 customers.push(["${uuid6}", "${name6}", "${wd_1}","${pd_6}","${th_6}","${avg_6}"]);
+                 customers.push(["${uuid7}", "${name7}", "${wd_1}","${pd_7}","${th_7}","${avg_7}"]);
+                 customers.push(["${uuid8}", "${name8}", "${wd_1}","${pd_8}","${th_8}","${avg_8}"]);
+                 customers.push(["${uuid9}", "${name9}", "${wd_1}","${pd_9}","${th_9}","${avg_9}"]);
+                 customers.push(["${uuid10}", "${name10}", "${wd_1}","${pd_10}","${th_10}","${avg_10}"]);    
+                 
+          
+                 //Create a HTML Table element.
+                 var table = document.createElement("TABLE");
+                 table.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount = customers[0].length;
+          
+                 //Add the header row.
+                 var row = table.insertRow(-1);
+                 for (var i = 0; i < columnCount; i++) {
+                     var headerCell = document.createElement("TH");
+                     headerCell.innerHTML = customers[0][i];
+                     row.appendChild(headerCell);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < customers.length; i++) {
+                     row = table.insertRow(-1);
+                     for (var j = 0; j < columnCount; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = customers[i][j];
+                     }
+                 }
+          
+                 var dvTable11 = document.getElementById("dvTable11");
+                 dvTable11.innerHTML = "";
+                 dvTable11.appendChild(table);    
+             }
+             function GenerateTable2() {
+                 //Build an array containing Customer records.
+                 var customers = new Array();
+                 customers.push([ "working_days","Present_days","avg_hours"]);
+                 customers.push([ "${wd_1}","${pd_a}","${avg_a}"]);     
+                 
+          
+                 //Create a HTML Table element.
+                 var table = document.createElement("TABLE");
+                 table.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount = customers[0].length;
+          
+                 //Add the header row.
+                 var row = table.insertRow(-1);
+                 for (var i = 0; i < columnCount; i++) {
+                     var headerCell = document.createElement("TH");
+                     headerCell.innerHTML = customers[0][i];
+                     row.appendChild(headerCell);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < customers.length; i++) {
+                     row = table.insertRow(-1);
+                     for (var j = 0; j < columnCount; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = customers[i][j];
+                     }
+                 }
+          
+                 var dvTable14 = document.getElementById("dvTable14");
+                 dvTable14.innerHTML = "";
+                 dvTable14.appendChild(table);
+             }
+
+             function GenerateTable3() {
+                 //Build an array containing Customer records.
+                 var customers = new Array();
+                 customers.push(["uuid", "Name", "working_days","Present_days","total_hrs","avg_hours"]);
+                 customers.push(["${uuid11}", "${name11}", "${wd_1}","${pd_11}","${th_11}","${avg_11}"]);
+                 customers.push(["${uuid12}", "${name12}", "${wd_1}","${pd_12}","${th_12}","${avg_12}"]);
+                 customers.push(["${uuid13}", "${name13}", "${wd_1}","${pd_13}","${th_13}","${avg_13}"]);
+                 customers.push(["${uuid14}", "${name14}", "${wd_1}","${pd_14}","${th_14}","${avg_14}"]);
+                 customers.push(["${uuid15}", "${name15}", "${wd_1}","${pd_15}","${th_15}","${avg_15}"]);
+                 customers.push(["${uuid16}", "${name16}", "${wd_1}","${pd_16}","${th_16}","${avg_16}"]);
+                 customers.push(["${uuid17}", "${name17}", "${wd_1}","${pd_17}","${th_17}","${avg_17}"]);
+                 customers.push(["${uuid18}", "${name18}", "${wd_1}","${pd_18}","${th_18}","${avg_18}"]);
+                 customers.push(["${uuid19}", "${name19}", "${wd_1}","${pd_19}","${th_19}","${avg_19}"]);
+                 customers.push(["${uuid20}", "${name20}", "${wd_1}","${pd_20}","${th_20}","${avg_20}"]);    
+                    
+                 
+          
+                 //Create a HTML Table element.y
+                 var table = document.createElement("TABLE");
+                 table.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount = customers[0].length;
+          
+                 //Add the header row.
+                 var row = table.insertRow(-1);
+                 for (var i = 0; i < columnCount; i++) {
+                     var headerCell = document.createElement("TH");
+                     headerCell.innerHTML = customers[0][i];
+                     row.appendChild(headerCell);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < customers.length; i++) {
+                     row = table.insertRow(-1);
+                     for (var j = 0; j < columnCount; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = customers[i][j];
+                     }
+                 }
+          
+                 var dvTable17 = document.getElementById("dvTable17");
+                 dvTable17.innerHTML = "";
+                 dvTable17.appendChild(table); 
+
+                 
+             }
+
+             function GenerateTable4() {
+                 //Build an array containing Customer records.
+                 var customers = new Array();
+                 customers.push(["uuid", "Name", "working_days","Present_days","total_hrs","avg_hours"]);
+                 customers.push(["${uuidsp}", "${namesp}", "${wd_1}","${pd_sp}","${th_sp}","${avg_sp}"]);  
+                 
+          
+                 //Create a HTML Table element.
+                 var table = document.createElement("TABLE");
+                 table.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount = customers[0].length;
+          
+                 //Add the header row.
+                 var row = table.insertRow(-1);
+                 for (var i = 0; i < columnCount; i++) {
+                     var headerCell = document.createElement("TH");
+                     headerCell.innerHTML = customers[0][i];
+                     row.appendChild(headerCell);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < customers.length; i++) {
+                     row = table.insertRow(-1);
+                     for (var j = 0; j < columnCount; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = customers[i][j];
+                     }
+                 }
+          
+                 var dvTable20 = document.getElementById("dvTable20");
+                 dvTable20.innerHTML = "";
+                 dvTable20.appendChild(table);
+        
+                  //Build an array containing Customer records.
+                  var cus = new Array();
+                 cus.push(["R&D", "LEARNING", "DISCUSSION","IMPLEMENTATION","ERROR_DEBUGGING"]);
+                 cus.push(["${r_d}", "${learn}","${disc}","${imp}","${err}"]);
+              
+                 
+                
+                 //Create a HTML Table element.
+                 var table2 = document.createElement("TABLE");
+                 table2.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount1 = cus[0].length;
+          
+                 //Add the header row.
+                 var row = table2.insertRow(-1);
+                 for (var i = 0; i < columnCount1; i++) {
+                     var headerCell1 = document.createElement("TH");
+                     headerCell1.innerHTML = cus[0][i];
+                     row.appendChild(headerCell1);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < cus.length; i++) {
+                     row = table2.insertRow(-1);
+                     for (var j = 0; j < columnCount1; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = cus[i][j];
+                     }
+                 }
+          
+                 var dvTable21 = document.getElementById("dvTable21");
+                 dvTable21.innerHTML = "";
+                 dvTable21.appendChild(table2);
+
+                 //Build an array containing Customer records.
+                 var cus = new Array();
+                 cus.push(["CODING_TEST ONLINE", "CODING_TEST OFFLINE", "APTITUDE","OPERATIONAL_WORK"]);
+                 cus.push([ "${cd_on}","${cd_off}","${apti}","${ops}"]);
+                 
+          
+                 //Create a HTML Table element.
+                 var table3 = document.createElement("TABLE");
+                 table3.border = "1";
+          
+                 //Get the count of columns.
+                 var columnCount1 = cus[0].length;
+          
+                 //Add the header row.
+                 var row = table3.insertRow(-1);
+                 for (var i = 0; i < columnCount1; i++) {
+                     var headerCell1 = document.createElement("TH");
+                     headerCell1.innerHTML = cus[0][i];
+                     row.appendChild(headerCell1);
+                 }
+          
+                 //Add the data rows.
+                 for (var i = 1; i < cus.length; i++) {
+                     row = table3.insertRow(-1);
+                     for (var j = 0; j < columnCount1; j++) {
+                         var cell = row.insertCell(-1);
+                         cell.innerHTML = cus[i][j];
+                     }
+                 }
+          
+                 var dvTable22 = document.getElementById("dvTable22");
+                 dvTable22.innerHTML = "";
+                 dvTable22.appendChild(table3);
+
+                 
+             }
+             
+             function combo()
+        {
+           GenerateTable();
+           GenerateTable1();
+           GenerateTable2();
+           GenerateTable3();
+           GenerateTable4();
+
+           
+        }
+
+         </script>
+         
+         
+         <script src="https://d3js.org/d3.v5.min.js"></script>
+         </table>
+        
+         <div style="text-align: center;">
+        <label><b>BEST PERFORMER OF ATHRV-ED</b></label></div><br/>
+         <div id="dvTable"></div><br>
+         
+         
+         <div style="text-align: center;">
+         <label><b>10 BEST PERFORMERS OF ATHRV-ED</b></label></div><br/>
+         <div id="dvTable11"></div><br>
+         
+         <div style="text-align: center;">
+         <label><b>AVERAGE OF THE BEST PERFORMER OF ATHRV-ED</b></label></div><br/>
+         <div id="dvTable14"></div><br><br>
+         <div class ="bar">
+            <script type="text/javascript">
+                // 1. データの準備
+  var dataset = [      
+			      { "value": "${r1}", "X": "R&D" },
+			      { "value": "${r2}",  "X": "LEARNING" },
+			      { "value": "${r3}",  "X": "DISCUSSION" },
+            { "value": "${r4}", "X": "IMPLEMENTATION" },
+            { "value": "${r5}", "X": "ERROR_DEBUGGING" }, 
+            { "value": "${r6}", "X": "CODING_TEST-ONLINE" },
+            { "value": "${r7}", "X": "CODING_TEST-OFFLINE" },
+            { "value": "${r8}", "X": "APTITUDE" },
+            { "value": "${r9}", "X": "OPS" }
+		]
+  var width = 400; // グラフの幅
+  var height = 300; // グラフの高さ
+  var padding = 30; // スケール表示用マージン
+  
+  // 2. SVG領域の設定
+  var svg = d3.select(".bar").append("svg").attr("width", width).attr("height", height);
+ 
+  // 3. 軸スケールの設定
+  var xScale = d3.scaleBand()
+    .rangeRound([padding, width - padding])
+    .padding(0.1)
+    .domain(dataset.map(function(d) { return d.X; }));
+ 
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(dataset, function(d) { return d.value; })])
+    .range([height - padding, padding]);
+ 
+  // 4. 軸の表示
+  svg.append("g")
+    .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+    .call(d3.axisBottom(xScale));
+ 
+  svg.append("g")
+    .attr("transform", "translate(" + padding + "," + 0 + ")")
+    .call(d3.axisLeft(yScale));
+ 
+  // 5. バーの表示
+  svg.append("g")
+    .selectAll("rect")
+    .data(dataset)
+    .enter()
+    .append("rect")
+    .attr("x", function(d) { return xScale(d.X); })
+    .attr("y", function(d) { return yScale(d.value); })
+    .attr("width", xScale.bandwidth())
+    .attr("height", function(d) { return height - padding - yScale(d.value); })
+    .attr("fill", "#76A7FA");
+            
+            </script>
+         </div>
+         
+
+         
+         <div style="text-align: center;">
+         <label><b>10 WORST PERFORMERS OF ATHRV-ED</b></label></div><br/>
+         <div id="dvTable17"></div><br>
+
+
+         
+
+          <div style="text-align: center;">
+         <label ><b>SPECIFIC USER</b></label></div><br>
+         <label ><i><b>MAIN REPORT</b></i></label>
+          <div id="dvTable20"></div><br>
+          <label ><i><b>REPORT ON THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</b></i></label>
+          <div id="dvTable21"></div><br>
+          <div id="dvTable22"></div>
+          <br />
+         
+          <div style="text-align: center;font-size: xx-large;"><label><b>REPORT IN GRAPH</b></label></div><BR>
+    
+          <div class = "line">
+            <script type="text/javascript">
+              // 1. データの準備
+              var dataset =  [
+               ["${c1_w}", "${k1}"],
+               ["${c2_w}", "${k2}"],
+               ["${c3_w}", "${k3}"],
+               ["${c4_w}", "${k4}"],
+               ["${c5_w}", "${k5}"],
+               ["${c6_w}", "${k6}"],
+               ["${c7_w}", "${k7}"],
+               ["${c8_w}", "${k8}"],
+               ["${c9_w}", "${k9}"],
+               ["${c10_w}", "${k10}"],
+               ["${c11_w}", "${k11}"],
+               ["${c12_w}", "${k12}"],
+               ["${c13_w}", "${k13}"],
+               ["${c14_w}", "${k14}"],
+               ["${c15_w}", "${k15}"],
+               ["${c16_w}", "${k16}"],
+               ["${c17_w}", "${k17}"],
+               ["${c18_w}", "${k18}"],
+               ["${c19_w}", "${k19}"],
+               ["${c20_w}", "${k20}"]
+             ];
+             var dataset_1 = [
+             ["${c21_w}", "${k21}"],
+               ["${c22_w}", "${k22}"],
+               ["${c23_w}", "${k23}"],
+               ["${c24_w}", "${k24}"],
+               ["${c25_w}", "${k25}"],
+               ["${c26_w}", "${k26}"],
+               ["${c27_w}", "${k27}"],
+               ["${c28_w}", "${k28}"],
+               ["${c29_w}", "${k29}"],
+               ["${c30_w}", "${k30}"],
+               ["${c31_w}", "${k31}"],
+               ["${c32_w}", "${k32}"],
+               ["${c33_w}", "${k33}"],
+               ["${c34_w}", "${k34}"],
+               ["${c35_w}", "${k35}"],
+               ["${c36_w}", "${k36}"],
+               ["${c37_w}", "${k37}"],
+               ["${c38_w}", "${k38}"],
+               ["${c39_w}", "${k39}"],
+               ["${c40_w}", "${k40}"]
+             ];
+           
+             var dataset_2 =  [
+               ["${c41_w}", "${k41}"],
+               ["${c42_w}", "${k42}"],
+               ["${c43_w}", "${k43}"],
+               ["${c44_w}", "${k44}"],
+               ["${c45_w}", "${k45}"],
+               ["${c46_w}", "${k46}"],
+               ["${c47_w}", "${k47}"],
+               ["${c48_w}", "${k48}"],
+               ["${c49_w}", "${k49}"],
+               ["${c50_w}", "${k50}"],
+               ["${c51_w}", "${k51}"],
+               ["${c52_w}", "${k52}"],
+               ["${c53_w}", "${k53}"],
+               ["${c54_w}", "${k54}"],
+               ["${c55_w}", "${k55}"],
+               ["${c56_w}", "${k56}"],
+               ["${c57_w}", "${k57}"],
+               ["${c58_w}", "${k58}"],
+               ["${c59_w}", "${k59}"],
+               ["${c60_w}", "${k60}"]
+             ];
+             
+              var width = 400; // グラフの幅
+              var height = 300; // グラフの高さ
+              var margin = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
+             
+              // 2. SVG領域の設定
+              var svg = d3.select(".line").append("svg").attr("width", width).attr("height", height);
+             
+              // 3. 軸スケールの設定
+              var xScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+                .domain([0, d3.max(dataset_1, function(d) { return d[0]; })])
+                .domain([0, d3.max(dataset_2, function(d) { return d[0]; })])
+                .range([margin.left, width - margin.right]);
+             
+              var yScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+                .domain([0, d3.max(dataset_1, function(d) { return d[1]; })])
+                .domain([0, d3.max(dataset_2, function(d) { return d[1]; })])
+                .range([height - margin.bottom, margin.top]);
+             
+              // 4. 軸の表示
+              var axisx = d3.axisBottom(xScale).ticks(5);
+              var axisy = d3.axisLeft(yScale).ticks(5);
+             
+              svg.append("g")
+                .attr("transform", "translate(" + 0 + "," + (height - margin.bottom) + ")")
+                .call(axisx)
+                .append("text")
+                .attr("fill", "black")
+                .attr("x", (width - margin.left - margin.right) / 2 + margin.left)
+                .attr("y", 35)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "10pt")
+                .attr("font-weight", "bold")
+                .text("WEEKS");
+             
+              svg.append("g")
+                .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+                .call(axisy)
+                .append("text")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle")
+                .attr("x", -(height - margin.top - margin.bottom) / 2 - margin.top)
+                .attr("y", -35)
+                .attr("transform", "rotate(-90)")
+                .attr("font-weight", "bold")
+                .attr("font-size", "10pt")
+                .text("NUMBER OF HOURS");
+             
+              // 5. ラインの表示
+              svg.append("path")
+                .datum(dataset)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                  .x(function(d) { return xScale(d[0]); })
+                  .y(function(d) { return yScale(d[1]); }));
+            
+                  svg.append("path")
+                .datum(dataset_1)
+                .attr("fill", "none")
+                .attr("stroke", "crimson")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                  .x(function(d) { return xScale(d[0]); })
+                  .y(function(d) { return yScale(d[1]); }));
+            
+                  svg.append("path")
+                .datum(dataset_2)
+                .attr("fill", "none")
+                .attr("stroke", "rosybrown")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                  .x(function(d) { return xScale(d[0]); })
+                  .y(function(d) { return yScale(d[1]); }));
+              </script>
+          </div>
+          <br><br><br>
+
+          <div>
+          <table>
+            <tr class="heading">
+                <th>WEEK</th>
+                <th>MONTH</th>
+            </tr>
+            <tr class="item">
+                 <td>${c1_w}</td>
+                 <td>${month1}</td>
+            </tr>
+            <tr class="item">
+              <td>${c2_w}</td>
+              <td>${month2}</td>
+            </tr>
+            <tr class="item">
+              <td>${c3_w}</td>
+              <td>${month3}</td>
+            </tr>
+            <tr class="item">
+              <td>${c4_w}</td>
+              <td>${month4}</td>
+             </tr>
+             <tr class="item">
+              <td>${c5_w}</td>
+              <td>${month5}</td>
+             </tr>
+             <tr class="item">
+              <td>${c6_w}</td>
+              <td>${month6}</td>
+             </tr>
+             <tr class="item">
+              <td>${c7_w}</td>
+              <td>${month7}</td>
+             </tr>
+             <tr class="item">
+              <td>${c8_w}</td>
+              <td>${month8}</td>
+             </tr>
+             <tr class="item">
+              <td>${c9_w}</td>
+              <td>${month9}</td>
+             </tr>
+             <tr class="item">
+              <td>${c10_w}</td>
+              <td>${month10}</td>
+             </tr>
+             <tr class="item">
+              <td>${c11_w}</td>
+              <td>${month11}</td>
+             </tr>
+             <tr class="item">
+              <td>${c12_w}</td>
+              <td>${month12}</td>
+             </tr>
+             <tr class="item">
+              <td>${c13_w}</td>
+              <td>${month13}</td>
+             </tr>
+             <tr class="item">
+              <td>${c14_w}</td>
+              <td>${month14}</td>
+             </tr>
+             <tr class="item">
+              <td>${c15_w}</td>
+              <td>${month15}</td>
+             </tr>
+             <tr class="item">
+              <td>${c16_w}</td>
+              <td>${month16}</td>
+             </tr>
+             <tr class="item">
+              <td>${c17_w}</td>
+              <td>${month17}</td>
+             </tr>
+             <tr class="item">
+              <td>${c18_w}</td>
+              <td>${month18}</td>
+             </tr>
+             <tr class="item">
+              <td>${c19_w}</td>
+              <td>${month19}</td>
+             </tr>
+             <tr class="item">
+              <td>${c20_w}</td>
+              <td>${month20}</td>
+             </tr>
+          </table>
+        </div> 
+ 
+         <br>
+         <br>
+         <br><br><br>
+
+         <div class ="bar2">
+           <h3>WORKING DAYS</h3>
+            <script type="text/javascript">
+                // 1. データの準備
+  var dataset = [
+    { "X": "WORKING DAYS", "value": "${wd_1}" },
+    { "X": "BEST PERFORMERS", "value": "${present_days}" },
+    { "X": "YOU", "value": "${present_days}" },
+    
+  ]
+  var width = 400; // グラフの幅
+  var height = 300; // グラフの高さ
+  var padding = 30; // スケール表示用マージン
+  
+  // 2. SVG領域の設定
+  var svg = d3.select(".bar2").append("svg").attr("width", width).attr("height", height);
+ 
+  // 3. 軸スケールの設定
+  var xScale = d3.scaleBand()
+    .rangeRound([padding, width - padding])
+    .padding(0.1)
+    .domain(dataset.map(function(d) { return d.X; }));
+ 
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(dataset, function(d) { return d.value; })])
+    .range([height - padding, padding]);
+ 
+  // 4. 軸の表示
+  svg.append("g")
+    .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
+    .call(d3.axisBottom(xScale));
+ 
+  svg.append("g")
+    .attr("transform", "translate(" + padding + "," + 0 + ")")
+    .call(d3.axisLeft(yScale));
+             
+  // 5. バーの表示
+  svg.append("g")
+    .selectAll("rect")
+    .data(dataset)
+    .enter()
+    .append("rect")
+    .attr("x", function(d) { return xScale(d.X); })
+    .attr("y", function(d) { return yScale(d.value); })
+    .attr("width", xScale.bandwidth())
+    .attr("height", function(d) { return height - padding - yScale(d.value); })
+    .attr("fill", "#76A7FA");
+            
+            </script>
+         </div>
+
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        
+        <div style="text-align: center;">
+           <label><b><u>THE TIME SPENT ON THE FOLLOWING ATTRIBUTES</u></b></label>
+        </div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color:#DC3912;"></div>
+         <div style="margin-top:-19px;padding-left: 30px;"><label><b>R&D</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: #3366CC;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Learning</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: #109618;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Discussion</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: #FF9900;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Implementation</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: #990099;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Error_Debugging</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: #76A7FA;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Coding_test-OFFLINE</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: crimson;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Coding_test-ONLINE</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: rosybrown;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>Aptitude</b></label></div><br>
+
+         <div style="width:15px;height:10px;border:1px solid #000;background-color: palevioletred;"></div><br>
+         <div style="margin-top:-42px;padding-left: 30px;"><label><b>OPS</b></label></div><br>
+         
+              
+       
+
+        <div class="piechart">
+        <script type="text/javascript">
+                var dataset = [
+                  { "name": "R&D", "value": "${r_d}" },
+                  { "name": "LEARNING", "value": "${learn}"},
+                  { "name": "DISCUSSION", "value": "${disc}" },
+                  { "name": "IMPLEMENTATION", "value": "${imp}" },
+                  { "name": "ERROR DEBUGGING", "value": "${err}" },
+                  { "name": "CODING_TEST OFFLINE", "value": "${cd_off}" },
+                  { "name": "CODING_TEST ONLINE", "value": "${cd_on}" },
+                  { "name": "APTITUDE", "value": "${apti}"}, 
+                  { "name": "OPS", "value": "${ops}"}
+                ]
+               
+                var width = 400; // グラフの幅
+                var height = 300; // グラフの高さ
+                var radius = Math.min(width, height) / 2 - 10;
+               
+                // 2. SVG領域の設定
+                var svg = d3.select(".piechart").append("svg").attr("width", width).attr("height", height);
+               
+                g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+               
+                // 3. カラーの設定
+                var color = d3.scaleOrdinal()
+                  .range(["#DC3912", "#3366CC", "#109618", "#FF9900", "#990099","#76A7FA",]);
+                
+                // 4. pieチャートデータセット用関数の設定
+                var pie = d3.pie()
+                  .value(function(d) { return d.value; })
+                  .sort(null);
+               
+                // 5. pieチャートSVG要素の設定
+                var pieGroup = g.selectAll(".pie")
+                  .data(pie(dataset))
+                  .enter()
+                  .append("g")
+                  .attr("class", "pie");
+               
+                arc = d3.arc()
+                  .outerRadius(radius)
+                  .innerRadius(0);
+               
+                pieGroup.append("path")
+                  .attr("d", arc)
+                  .attr("fill", function(d) { return color(d.index) })
+                  .attr("opacity", 0.75)
+                  .attr("stroke", "white");
+               
+                // 6. pieチャートテキストSVG要素の設定
+                var text = d3.arc()
+                  .outerRadius(radius - 30)
+                  .innerRadius(radius - 30);
+               
+                pieGroup.append("text")
+                  .attr("fill", "black")
+                  .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
+                  .attr("dy", "5px")
+                  .attr("font", "10px")
+                  .attr("text-anchor", "middle")
+                  
+                </script></div> <br><br>
+ 
+
+                 
+                </div>
+        
+   </body>
+</html>
